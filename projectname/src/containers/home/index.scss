@@ -1,0 +1,257 @@
+@import '../../assets/fonts/index.scss';
+@import '../../assets/colors/index.scss';
+
+@media (max-width: 425px) {
+  .home {
+    overflow: hidden;
+
+    &__body {
+      margin-top: 74px;
+    }
+
+    &__body-card {
+      margin: 0 21px 0 0;
+    }
+
+    &__body-card-image {
+      width: 154px;
+      height: 91px;
+    }
+
+    &__body-card-title {
+      font-weight: 500;
+    }
+  }
+
+  .search-icon {
+    margin: 0 10px;
+  }
+
+  .card-box {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .category {
+    &-box {
+      display: flex;
+      flex-direction: column;
+      margin: 9px 0 0 23px;
+    }
+
+    &-title {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 9px;
+    }
+  }
+}
+
+@media (min-width: 426px) {
+  .home {
+    overflow: hidden;
+
+    &__header {
+      width: 100%;
+      height: 65px;
+      background-color: $lightSecondary;
+      display: flex;
+      align-items: center;
+      margin-bottom: 21px;
+      position: fixed;
+      top: 0;
+
+      &-list {
+        margin: 0 0 0 5px;
+      }
+
+      &-search-bar {
+        width: 80%;
+        height: 39px;
+        border-radius: 35px;
+        background-color: $white;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        border: white 1px solid;
+        outline: 0px;
+        margin: 10px;
+      }
+    }
+  
+    &__body {
+      margin-top: 74px;
+
+      &-card {
+        margin: 0 21px 0 0;
+  
+        &-image {
+          width: 154px;
+          height: 91px;
+        }
+  
+        &-info {
+          height: 33px;
+          width: 150px;
+          display: flex;
+          padding: 2px 0 0 4px;
+          flex-direction: column;
+          background-color: $secondary;
+          font-size: 12px;
+          color: $white;
+          border-radius: 0 0 3px 3px;
+          margin: -5px 0 0;
+          font-weight: lighter;
+        }
+  
+        &-title {
+          font-weight: 500;
+        }
+      }
+    }
+  }
+
+  .side-bar {
+    min-width: 208px;
+    height: 100vh;
+    flex-direction: column;
+    display: flex;
+    background-color: $white;
+
+    &__top {
+      height: 179px;
+      width: 100%;
+      background-color: $lightSecondary;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    &__top-image {
+      width: 85px;
+      height: 85px;
+      border-radius: 100%;
+    }
+
+    &__top-text {
+      font-size: 18px;
+      color: white;
+      margin-top: 13px;
+      font-weight: 400;
+    }
+
+    &__options {
+      display: flex;
+      flex-direction: column;
+      margin: 37px 0 0 21px;
+    }
+
+    &-logout {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: row;
+      margin: 0 0 31px;
+
+      &-icon {
+        margin: 4px 0 0;
+      }
+    }
+
+    &-space {
+      display: flex;
+      justify-content: center;
+      height: 100%;
+      align-items: flex-end;
+    }
+  
+  }
+
+  .options {
+    width: max-content;
+    margin: 0 0 21px;
+    cursor: pointer;
+  }
+
+  .bi {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .search-bar-input {
+    border: 0;
+    height: 29px;
+    padding: 5px;
+    width: 100%;
+    border-radius: 0 39px 39px 0;
+    outline: none;
+  }
+
+  .search-icon {
+    margin: 0 10px;
+  }
+
+  .category {
+    &-box {
+      display: flex;
+      flex-direction: column;
+      margin: 9px 0 0 23px;
+    }
+
+    &-title {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 9px;
+    }
+  }
+
+  .card-box {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+.side-bar {
+  &-outside {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
+
+  &-container {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.356);
+    z-index: 1;
+    overflow: hidden;
+    display: flex;
+  }
+
+  &-logout-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  } 
+}
+
+.home {
+  &__body-card-info {
+    height: 33px;
+    width: 150px;
+    display: flex;
+    padding: 2px 0 0 4px;
+    flex-direction: column;
+    background-color: $secondary;
+    font-size: 12px;
+    color: #f3f6f6;
+    border-radius: 0 0 3px 3px;
+    margin: -5px 0 0;
+    font-weight: lighter;
+  }
+}

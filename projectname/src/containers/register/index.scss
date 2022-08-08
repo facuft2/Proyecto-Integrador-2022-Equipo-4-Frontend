@@ -1,0 +1,89 @@
+@import '../../assets/fonts/index.scss';
+@import '../../assets/colors/index.scss';
+
+
+.register {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &__input {
+        width: 255px;
+        height: 61px;
+        padding: 0 2px 0 0px;
+        border-radius: 0 10px 10px 0;
+        border: 0;
+        outline: none;
+        font-size: 16px;
+
+        &-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+    &__button {
+        background: $primary;
+        border-radius: 10px;
+        border: 0;
+        color: #fff;
+        width: 253px;
+        height: 52px;
+        font-weight: 400;
+        font-size: 20px;
+        letter-spacing: 0.4px;
+        margin: 36px 0 0;
+        cursor: pointer;
+    }
+
+    &__message {
+        color: $grey;
+        font-size: 11px;
+        margin-top: 53px;
+
+        &-green {
+            color: $darkPrimary;
+            font-weight: 600;
+            cursor: pointer;
+        }
+    }
+
+    &__title-text {
+        font-size: 32px;
+        width: max-content;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+    
+}
+
+.input {
+    &-w-icon {
+        width: 312px;
+        height: 61px;
+        background-color: $white;
+        box-shadow: $boxShadow;
+        border-radius: 10px;
+        border: 1px solid $grey;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin: 0 0 12px;
+    }
+
+    &-icon {
+        width: 40px;
+    }
+}
+
+::placeholder {
+    color: #686868;
+    font-size: 16px;
+    font-family: $Montserrat;
+}
