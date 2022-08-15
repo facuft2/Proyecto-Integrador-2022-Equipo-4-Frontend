@@ -5,7 +5,7 @@ import { ReactComponent as Search } from "../../assets/search.svg";
 import { Icon } from "@iconify/react";
 import { useNavigate } from "react-router-dom";
 
-import './index.css';
+import './index.scss';
 
 const Header = ({ showSideBar, setShowSideBar }) => {
   const navigate = useNavigate();
@@ -29,13 +29,13 @@ const Header = ({ showSideBar, setShowSideBar }) => {
                   <Icon icon="ant-design:home-outlined" height="15" />
                   <span classname="options-text"> Inicio </span>
                 </div>
-                <div className="options">
+                <div className="options" onClick={() => {navigate('/profile')}}>
                   <Icon icon="ant-design:user-outlined" height="15" />
                   <span classname="options-text"> Perfil </span>
                 </div>
-                <div className="options">
+                <div className="options" onClick={() => {navigate('/inventory')}}>
                   <Icon icon="ic:outline-inventory-2" height="15" />
-                  <span classname="options-text"> Mi inventario </span>
+                  <span classname="options-text" > Mi inventario </span>
                 </div>
               </div>
             </div>
@@ -74,7 +74,7 @@ const Header = ({ showSideBar, setShowSideBar }) => {
         </span>
         <div className="header-search-bar">
           <Search className="search-icon" />
-          <input className="search-bar-input"></input>
+          <input className="search-bar-input" placeholder="Buscar un producto"></input>
         </div>
       </div>
     </>

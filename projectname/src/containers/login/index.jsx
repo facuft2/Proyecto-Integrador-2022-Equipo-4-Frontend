@@ -1,12 +1,20 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./index.scss";
+import axios from 'axios'
 import { Icon } from "@iconify/react";
+import { useEffect } from "react";
 
 const SignIn = () => {
   const [name, setName] = useState();
   const [password, setPassword] = useState();
   const navigate = useNavigate();
+  useEffect(() => {
+    axios.get('http://10.1.11.183:4000/usuarios').then(
+      console.log('hola')
+    )
+  },[]) 
+ 
 
   return (
     <div className="sign-in">

@@ -1,0 +1,91 @@
+@import "../../assets/fonts/index.scss";
+@import "../../assets/colors/index.scss";
+
+.product {
+  overflow-y: hidden;
+  height: 100%;
+  &__body {
+    margin: 15% 0 0 27px;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+
+    &-info {
+      display: flex;
+      align-items: center;
+
+      &-image {
+        width: 24px;
+        height: 24px;
+      }
+
+      &-name {
+        font-size: 16px;
+        font-weight: 500;
+        margin: 0 0 0 10px;
+      }
+    }
+
+    &-data {
+      display: flex;
+      flex-direction: column;
+
+      &-title {
+        margin: 14px 0 7px;
+      }
+
+      &-image {
+        width: 309px;
+        height: 182px;
+        box-shadow: $boxShadow;
+        border-radius: 5px;
+      }
+
+      &-description {
+        display: flex;
+        flex-direction: column;
+        margin: 22px 0 0 0;
+        width: 300px;
+        height: 83px;
+        border-bottom: 1px solid $grey;
+
+        &-zona {
+          margin-top: 10px;
+        }
+
+        &-tipo {
+          margin-top: 10px;
+        }
+
+        &-cantidad {
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+
+  &-button {
+    background-color: $primary;
+    width: 80%;
+    height: 41px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    border: 0;
+    color: $white;
+    border-radius: 5px;
+    font-family: $Montserrat;
+    font-weight: 300;
+    margin: 0 0 10px;
+    
+
+    &-box {
+      width: 100%;
+      height: 20%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+  }
+}

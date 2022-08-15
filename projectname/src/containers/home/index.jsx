@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { Icon } from "@iconify/react";
-import Header from '../../components/Header/Header'
+import Header from "../../components/Header/Header";
+import Object from "../../components/Object";
 import { useNavigate } from "react-router-dom";
-import fakeData from "../../constants/index";
+// import { fakeData } from "../../constants/index";
 import "./index.scss";
 
+const fs = require("fs");
 
 function Home() {
-  const navigate =  useNavigate();
+  const navigate = useNavigate();
   const [type, setType] = useState([]);
   const [showSideBar, setShowSideBar] = useState(false);
+  // const fakeData = fs.readFileSync("../../constants/fakeData.json", "utf8");
+  console.log(fs)
+  const fakeData = []
 
   useEffect(() => {
     setType(Array.from(new Set(fakeData.map(({ tipo }) => tipo))));
@@ -21,31 +25,18 @@ function Home() {
 
   return (
     <div className="home">
-      <div className="home__body" >
+      <div className="home__body">
         <Header showSideBar={showSideBar} setShowSideBar={setShowSideBar} />
         {productsCategory.map((category) => (
           <>
             <div className="category-box">
-              <span className="category-title">{category[0].tipo}</span>
+              <div className="category-box__head">
+                <span className="category-title">{category[0].tipo}</span>
+                <span className="category-see-all">Ver todo</span>
+              </div>
               <div className="card-box">
                 {category.map((card) => (
-                  <div className="home__body-card">
-                    <img
-                      className="home__body-card-image"
-                      alt="card"
-                      src="https://images-ti-vm1.tiendainglesa.com.uy/medium/P461723-1.jpg?20210720130231,Mesa-de-Ping-Pong-en-Tienda-Inglesa"
-                    />
-                    <div className="home__body-card-info">
-                      <div className="home__body-card-title">
-                        <span> {card.title} </span>
-                      </div>
-                      <div className="home__body-card-type">
-                        <span>
-                          tipo: {card.trueque ? "trueque" : "intercambio"}{" "}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
+                  <Object image={card.image} id={card.id} title={card.title} trueque={card.trueque} />
                 ))}
               </div>
             </div>

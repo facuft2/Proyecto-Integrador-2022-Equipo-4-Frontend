@@ -11,6 +11,8 @@
 # production
 /build
 
+/src/assets/Category/
+
 # misc
 .DS_Store
 .env.local
