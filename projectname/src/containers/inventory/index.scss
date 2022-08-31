@@ -5,10 +5,11 @@
 .inventory {
     display: flex;
     &__body {
-        margin: 72px 0 0 23px;
+        margin: 10% 0 0 0;
         display: flex;
         flex-direction: row; 
         flex-wrap: wrap;
+        justify-content: space-evenly;
         width: 100%;
 
         &-item {
@@ -27,3 +28,12 @@
         background-color: $darkPrimary;
     }
 }
+
+@media (max-width: 600px) {
+    .inventory {
+      &__body {
+        margin: 15% 0 0 0;
+      }
+    }
+  }
+  

@@ -6,9 +6,6 @@ import "./index.scss";
 
 const Exchange1 = () => {
   const [product, setProduct] = useState();
-  setTimeout(() => {
-    setProduct(productWithUser);
-  }, 5000);
 
   return (
     <div className="exchange">

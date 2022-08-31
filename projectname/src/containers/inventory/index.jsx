@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import "./index.scss";
 
 const Inventory = () => {
+  const navigate = useNavigate();
   return (
     <div className="inventory">
       <HeaderGen text="Mi inventario" />
@@ -22,7 +23,7 @@ const Inventory = () => {
           </div>
         ))}
       </div>
-      <button className="inventory-button"> Subir objeto </button>
+      <button className="inventory-button" onClick={() => navigate('/addItem', { replace: true })}> Subir objeto </button>
     </div>
   );
 };

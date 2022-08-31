@@ -14,6 +14,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: 0 0 10px 0;
 
     &-button {
       @include button;
@@ -27,17 +28,20 @@
   &__card {
     display: flex;
     flex-direction: column;
-    margin: 15px 0 0 15px;
+    // margin: 15px 0 0 15px;
 
     &-exchange {
       text-align: start;
       font-weight: 600;
+      margin: 0 0 0 15px;
     }
 
     &-box {
       display: flex;
       flex-direction: row;
-      margin: 15px 0 0 10px;
+      margin: 15px 0 0 0;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
     }
   }
 
@@ -101,6 +105,10 @@
       }
     }
   }
+}
+
+.card {
+  margin-top: 15px;
 }
 
 @media (max-width: 600px) {

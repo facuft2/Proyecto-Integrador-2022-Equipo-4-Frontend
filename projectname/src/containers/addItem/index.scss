@@ -3,10 +3,12 @@
 @import "../../assets/styles/index.scss";
 
 .add-item {
+  height: 100%;
+
   &__button {
     width: 100%;
     display: flex;
-    margin-top: 20px;
+    margin-top: 40px;
     justify-content: space-evenly;
 
     &--cancel {

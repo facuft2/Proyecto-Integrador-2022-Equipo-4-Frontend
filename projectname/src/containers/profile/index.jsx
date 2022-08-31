@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import "./index.scss";
 
 const Profile = () => {
+  const navigate = useNavigate();
   console.log(fakeUsers[0].productos);
   const myId = localStorage.getItem("id");
   const isMyProfile = fakeUsers[0].id === parseInt(myId);
@@ -41,7 +42,7 @@ const Profile = () => {
         </div>
         {isMyProfile && (
           <div className="profile-edit">
-            <button className="profile-edit-button">Editar perfil</button>
+            <button className="profile-edit-button" onClick={() => navigate('/profile/edit')}>Editar perfil</button>
           </div>
         )}
         <div className="profile__card">

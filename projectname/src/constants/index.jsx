@@ -90,6 +90,8 @@ const fakeUsers = [
     intercambios: 10,
     objetosDisponibles: 3,
     likes: 3,
+    email: 'bukuturakatabu@gmail.com',
+    description: 'Soy un bukuturakatabu',
     productos: [
       {
         id: 5,
@@ -151,4 +153,94 @@ const productWithUser = {
   }
 }
 
-export { fakeData, fakeUsers, productWithUser };
+const exchangeInfo = [{
+  id: 1,
+  otherProduct: {
+    id: 2,
+    userId: 1,
+    title: "Cartuchera",
+    description: "Cartuchera re linda y bonita",
+    tipo: "Educacion",
+    image: "https://www.dispa.com.uy/wp-content/uploads/2021/03/CARTUCHERA.jpg",
+    trueque: true,
+    zona: 'Goes',
+    cantidad: 1,
+  },
+  myProduct: {
+    id: 1,
+    userId: 2,
+    title: "Mesa de ping pong",
+    description: "Mesa de ping pong",
+    tipo: "Juegos",
+    image: "https://images-ti-vm1.tiendainglesa.com.uy/medium/P461723-1.jpg?20210720130231,Mesa-de-Ping-Pong-en-Tienda-Inglesa",
+    trueque: true,
+    cantidad: 1,
+    zone: 'Goes',
+  },
+  date: new Date(),
+  status: 'Pendiente...',
+  message: 'Me encanto este producto',
+  recieved: false,
+  userInfo: {
+    name: "Rober",
+    id: 1,
+    icon: "https://cdn-icons-png.flaticon.com/512/219/219966.png",
+    intercambios: 10,
+    objetosDisponibles: 3,
+    likes: 3,
+  },
+  myUserInfo: {
+    name: "agustin",
+    id: 2,
+    icon: "https://upload.wikimedia.org/wikipedia/commons/a/a0/Agust%C3%ADncasanova_%28cropped%29.jpg",
+    intercambios: 3,
+    objetosDisponibles: 6,
+    likes: 1,
+  }
+},{
+  id: 2,
+  otherProduct: {
+    id: 3,
+    userId: 1,
+    title: "Celular",
+    description: "Celular",
+    tipo: "Electronico",
+    image: "https://img.freepik.com/foto-gratis/vista-frontal-mano-que-sostiene-telefono-inteligente_23-2148775905.jpg?w=2000",
+    trueque: true,
+    zona: 'Goes',
+    cantidad: 1,
+  },
+  myProduct: {
+    id: 1,
+    userId: 2,
+    title: "Mesa de ping pong",
+    description: "Mesa de ping pong",
+    tipo: "Juegos",
+    image: "https://images-ti-vm1.tiendainglesa.com.uy/medium/P461723-1.jpg?20210720130231,Mesa-de-Ping-Pong-en-Tienda-Inglesa",
+    trueque: true,
+    cantidad: 1,
+    zone: 'Goes',
+  },
+  date: new Date(),
+  status: 'Exitoso',
+  message: 'Me encanto este producto',
+  recieved: true,
+  myUserInfo: {
+    name: "Rober",
+    id: 1,
+    icon: "https://cdn-icons-png.flaticon.com/512/219/219966.png",
+    intercambios: 10,
+    objetosDisponibles: 3,
+    likes: 3,
+  },
+  userInfo: {
+    name: "agustin",
+    id: 2,
+    icon: "https://upload.wikimedia.org/wikipedia/commons/a/a0/Agust%C3%ADncasanova_%28cropped%29.jpg",
+    intercambios: 3,
+    objetosDisponibles: 6,
+    likes: 1,
+  }
+}]
+
+export { fakeData, fakeUsers, productWithUser, exchangeInfo };

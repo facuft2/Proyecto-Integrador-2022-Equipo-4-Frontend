@@ -44,6 +44,8 @@
   justify-content: center;
   flex-direction: row;
   margin: 0 0 31px;
+  position: absolute;
+  bottom: 15px;
 }
 
 .side-bar-logout-icon {
@@ -53,7 +55,7 @@
 .side-bar-space {
   display: flex;
   justify-content: center;
-  height: 100%;
+  height: 43%;
   align-items: flex-end;
 }
 

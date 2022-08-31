@@ -3,17 +3,19 @@ import HeaderGen from "../../components/HeaderGen";
 import { fakeUsers } from "../../constants";
 import Object from "../../components/Object";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 import "./index.scss";
 import { useEffect } from "react";
 
 const AddItem = () => {
+  const navigate = useNavigate();
   const [image, setImage] = useState();
-  const [mira, setMira] = useState();
+  const [showImage, setShowImage] = useState();
 
   useEffect(() => {
-    // setMira()
-    setMira(image ? URL.createObjectURL(image) : null);
+    setShowImage(image ? URL.createObjectURL(image) : null);
+    console.log(showImage)
   }, [image]);
 
   return (
@@ -44,7 +46,7 @@ const AddItem = () => {
             </>
           ) : (
             <>
-              <img className="add-item__image" src={mira} alt="product" />
+              <img className="add-item__image" src={showImage} alt="product" />
             </>
           )}
         </div>
@@ -88,8 +90,30 @@ const AddItem = () => {
         </select>
       </div>
       <div className="add-item__button">
-        <button className="add-item__button--cancel">Cancelar</button>
-        <button className="add-item__button--add">Agregar producto</button>
+        <button className="add-item__button--cancel" onClick={() => navigate('/', { replace: true })}>Cancelar</button>
+        <button className="add-item__button--add" onClick={() => {
+          const options = {
+            method: 'POST',
+            url: 'http://localhost:4000/users',
+            headers: {'Content-Type': 'application/json'},
+            data: {
+              nombre: 'Juan',
+              apellido: 'Perez',
+              email: 'Juan@example.com',
+              contrasenia: '12345',
+              descripcion: 'Usuario de prueba',
+              foto_perfil: showImage,
+              telefono: '12345678',
+              producto: {titulo: 'hola', descripcion: 'hola', tipo_trato: 'INTERCAMBIO', foto: showImage, cantidad: 1}
+            }
+          };
+          
+          axios.request(options).then(function (response) {
+            console.log(response.data);
+          }).catch(function (error) {
+            console.error(error);
+          });
+        }}>Agregar producto</button>
       </div>
     </div>
   );

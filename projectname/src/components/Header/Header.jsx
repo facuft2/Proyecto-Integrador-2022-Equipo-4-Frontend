@@ -37,6 +37,10 @@ const Header = ({ showSideBar, setShowSideBar }) => {
                   <Icon icon="ic:outline-inventory-2" height="15" />
                   <span classname="options-text" > Mi inventario </span>
                 </div>
+                <div className="options" onClick={() => {navigate('/exchanges')}}>
+                  <Icon icon="ic:outline-inventory-2" height="15" />
+                  <span classname="options-text" > Mis intercambios </span>
+                </div>
               </div>
             </div>
             <div className="side-bar-space">

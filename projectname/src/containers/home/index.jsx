@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import Object from "../../components/Object";
 import { useNavigate } from "react-router-dom";
-// import { fakeData } from "../../constants/index";
+import { fakeData } from "../../constants/index";
 import "./index.scss";
 
 const fs = require("fs");
@@ -11,9 +11,6 @@ function Home() {
   const navigate = useNavigate();
   const [type, setType] = useState([]);
   const [showSideBar, setShowSideBar] = useState(false);
-  // const fakeData = fs.readFileSync("../../constants/fakeData.json", "utf8");
-  console.log(fs)
-  const fakeData = []
 
   useEffect(() => {
     setType(Array.from(new Set(fakeData.map(({ tipo }) => tipo))));
