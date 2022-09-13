@@ -2,12 +2,43 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./index.scss";
 import { Icon } from "@iconify/react";
+import axios from "axios";
 
 const Register = () => {
   const [name, setName] = useState();
   const [password, setPassword] = useState();
+  const [verifyPassword, setVerifyPassword] = useState();
+  const [email, setEmail] = useState();
+  const [apellido, setApellido] = useState();
+  const [resMessage, setResMessage] = useState();
+
   const navigate = useNavigate();
 
+  const options = {
+    method: 'POST',
+    url: 'http://10.1.8.150:4000/users',
+    headers: {'Content-Type': 'application/json'},
+    data: {
+      nombre: name,
+      apellido,
+      email,
+      contrasenia: password,
+    }
+  };
+
+  const handleSubmit = () => {
+    if (password !== verifyPassword) {
+      alert("Passwords do not match");
+    } else {
+      axios.request(options).then(function (response) {
+        setResMessage(response.data);
+        navigate("/login");
+      }).catch((error) => {
+        setResMessage(error.response.data);
+      });
+    }
+  }
+  
   return (
     <div className="register">
       <span className="register__title-text">Crea una cuenta</span>
@@ -19,6 +50,17 @@ const Register = () => {
             placeholder="Nombre"
             type="text"
             name="User"
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+        <div className="input-w-icon">
+          <Icon icon="bi:person-fill" className="input-icon" height="19" />
+          <input
+            className="register__input"
+            placeholder="Apellido"
+            type="text"
+            name="User"
+            onChange={(e) => setApellido(e.target.value)}
           />
         </div>
         <div className="input-w-icon">
@@ -28,6 +70,7 @@ const Register = () => {
             placeholder="Email"
             type="text"
             name="Email"
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div className="input-w-icon">
@@ -37,6 +80,7 @@ const Register = () => {
             placeholder="Contraseña"
             type="password"
             name="password"
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
         <div className="input-w-icon">
@@ -46,12 +90,14 @@ const Register = () => {
             placeholder="Confirmar contraseña"
             type="password"
             name="password"
+            onChange={(e) => setVerifyPassword(e.target.value)}
           />
         </div>
+        <span>{resMessage?.code === 'Success' ? 'Usuario registrado correctamente' : resMessage?.code}</span>
       </div>
       <button
         className="register__button"
-        onClick={() => navigate("/signIn", { replace: true })}
+        onClick={handleSubmit}
       >
         Registrarse
       </button>
@@ -59,7 +105,7 @@ const Register = () => {
         ¿Tienes una cuenta?
         <span
           className="register__message-green"
-          onClick={() => navigate("/signIn", { replace: true })}
+          onClick={() => navigate("/login", { replace: true })}
         >
           Iniciar sesion
         </span>

@@ -6,6 +6,9 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^0.27.2",
+    "dotenv": "^16.0.2",
+    "fs": "^0.0.1-security",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
@@ -25,7 +28,8 @@
       "react-app/jest"
     ],
     "rules": {
-      "linebreak-style": "off"
+      "linebreak-style": "off",
+      "no-unused-expressions": "off"
     }
   },
   "browserslist": {
@@ -39,6 +43,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
   },
   "devDependencies": {
     "@iconify/react": "^3.2.2"

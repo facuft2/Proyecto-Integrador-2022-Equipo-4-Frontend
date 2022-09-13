@@ -1,53 +1,35 @@
 import React, { useEffect, useState } from "react";
-import { Icon } from "@iconify/react";
-import Header from '../../components/Header/Header'
+import Header from "../../components/Header/Header";
 import { useNavigate } from "react-router-dom";
-import fakeData from "../../constants/index";
+import { Category } from "../../components/Category";
+import { getProducts } from "../../api";
 import "./index.scss";
 
-
 function Home() {
-  const navigate =  useNavigate();
-  const [type, setType] = useState([]);
+  const navigate = useNavigate();
   const [showSideBar, setShowSideBar] = useState(false);
+  const [products, setProducts] = useState()
 
   useEffect(() => {
-    setType(Array.from(new Set(fakeData.map(({ tipo }) => tipo))));
-  }, []);
-
-  const productsCategory = type.map((type) =>
-    fakeData.filter((prod) => prod.tipo === type)
-  );
+    const data = async () => {
+      setProducts(await getProducts())
+    }
+    data()
+  }, [])
 
   return (
     <div className="home">
-      <div className="home__body" >
+      <div className="home__body">
         <Header showSideBar={showSideBar} setShowSideBar={setShowSideBar} />
-        {productsCategory.map((category) => (
+        {products?.Productos?.map((data) => (
           <>
             <div className="category-box">
-              <span className="category-title">{category[0].tipo}</span>
-              <div className="card-box">
-                {category.map((card) => (
-                  <div className="home__body-card">
-                    <img
-                      className="home__body-card-image"
-                      alt="card"
-                      src="https://images-ti-vm1.tiendainglesa.com.uy/medium/P461723-1.jpg?20210720130231,Mesa-de-Ping-Pong-en-Tienda-Inglesa"
-                    />
-                    <div className="home__body-card-info">
-                      <div className="home__body-card-title">
-                        <span> {card.title} </span>
-                      </div>
-                      <div className="home__body-card-type">
-                        <span>
-                          tipo: {card.trueque ? "trueque" : "intercambio"}{" "}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+              <div className="category-box__head">
+                <span className="category-title">{data.categoria}</span>
+                <span className="category-see-all">Ver todo</span>
               </div>
+              <Category data={data} />
+              <button className="inventory-button" onClick={() => navigate('/addItem', { replace: false })}> Subir objeto </button>
             </div>
           </>
         ))}

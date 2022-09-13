@@ -1,14 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { ReactComponent as List } from "../../assets/list.svg";
-import { ReactComponent as Search } from "../../assets/search.svg";
 import { Icon } from "@iconify/react";
 import { useNavigate } from "react-router-dom";
 
-import './index.css';
+import { ReactComponent as List } from "../../assets/list.svg";
+import { ReactComponent as Search } from "../../assets/search.svg";
+import { getUsersById } from "../../api";
+
+import './index.scss';
+import { useEffect } from "react";
 
 const Header = ({ showSideBar, setShowSideBar }) => {
   const navigate = useNavigate();
+  const [profile, setProfile] = useState()
+
+  const id = localStorage.getItem('id');
+
+  const cosito = async () => {
+    setProfile(await getUsersById({id}))
+  }
+
+  useEffect(() => {
+    cosito()
+  },[])
 
   return (
     <>
@@ -22,28 +36,31 @@ const Header = ({ showSideBar, setShowSideBar }) => {
                   alt="profile"
                   className="side-bar__top-image"
                 />
-                <span className="side-bar__top-text">Agustin Casanova</span>
+                <span className="side-bar__top-text">{`${profile.nombre} ${profile.apellido}`}</span>
               </div>
               <div className="side-bar__options">
                 <div className="options">
                   <Icon icon="ant-design:home-outlined" height="15" />
                   <span classname="options-text"> Inicio </span>
                 </div>
-                <div className="options">
+                <div className="options" onClick={() => {navigate('/profile')}}>
                   <Icon icon="ant-design:user-outlined" height="15" />
                   <span classname="options-text"> Perfil </span>
                 </div>
-                <div className="options">
+                <div className="options" onClick={() => {navigate('/inventory')}}>
                   <Icon icon="ic:outline-inventory-2" height="15" />
-                  <span classname="options-text"> Mi inventario </span>
+                  <span classname="options-text" > Mi inventario </span>
+                </div>
+                <div className="options" onClick={() => {navigate('/exchanges')}}>
+                  <Icon icon="ic:outline-inventory-2" height="15" />
+                  <span classname="options-text" > Mis intercambios </span>
                 </div>
               </div>
             </div>
             <div className="side-bar-space">
-              <div className="side-bar-logout">
+              <div className="side-bar-logout" onClick={() => navigate("/login", { replace: false })}>
                 <span
                   className="side-bar-logout-text"
-                  onClick={() => navigate("/signIn", { replace: true })}
                 >
                   Cerrar sesion
                 </span>
@@ -74,7 +91,7 @@ const Header = ({ showSideBar, setShowSideBar }) => {
         </span>
         <div className="header-search-bar">
           <Search className="search-icon" />
-          <input className="search-bar-input"></input>
+          <input className="search-bar-input" placeholder="Buscar un producto"></input>
         </div>
       </div>
     </>

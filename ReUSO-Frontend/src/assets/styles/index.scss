@@ -1,0 +1,48 @@
+@mixin button {
+    background-color: $primary;
+    width: 80%;
+    height: 41px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    border: 0;
+    color: $white;
+    border-radius: 5px;
+    font-family: $Montserrat;
+    font-weight: 300;
+    margin: 0 0 10px;
+    cursor: pointer;
+  }
+
+  @mixin invertedButton {
+    background-color: $white;
+    width: 80%;
+    height: 41px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    border: 0;
+    color: $primary;
+    border-radius: 5px;
+    font-family: $Montserrat;
+    border: $primary 1px solid;
+    font-weight: 300;
+    margin: 0 0 10px;
+    cursor: pointer;
+  }
+
+  @mixin input {
+    width: 325px;
+    height: 30px;
+    margin: 5px 0 0 0;
+    outline: none;
+    border: 0 ;
+    background-color: transparent;
+    border-bottom: 1px solid $darkGrey;
+    font-family: $Montserrat;
+    color: $dark;
+    resize: none;
+    padding: 5px;
+  }
