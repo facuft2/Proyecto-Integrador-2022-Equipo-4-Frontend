@@ -9,19 +9,20 @@ const apiAxios = axios.create({
   },
 });
 
-apiAxios.interceptors.response.use(
-  (response) => {
-    // console.log(response);
-    return response;
-  },
-  (error) => {
-    if (error.response.status === 413) {
-      persistSession(null);
-      window.location.reload();
-    }
-    return Promise.reject(error);
-  }
-);
+const register = (({
+  nombre,
+  apellido,
+  email,
+  contrasenia
+}) => apiAxios.post('/users', {
+  nombre,
+  apellido,
+  email,
+  contrasenia
+}).then((response) => {
+  persistSession(response)
+  return response
+}))
 
 const login = ({
   email,
@@ -115,5 +116,6 @@ export {
   getUsersById,
   getProductsbyId,
   getMyProducts,
-  postProducts
+  postProducts,
+  register
 };

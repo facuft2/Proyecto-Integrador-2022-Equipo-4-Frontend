@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./index.scss";
 import { Icon } from "@iconify/react";
+import { register } from "../../api";
 import axios from "axios";
 
 const Register = () => {
@@ -14,31 +15,18 @@ const Register = () => {
 
   const navigate = useNavigate();
 
-  const options = {
-    method: 'POST',
-    url: 'http://10.1.8.150:4000/users',
-    headers: {'Content-Type': 'application/json'},
-    data: {
-      nombre: name,
-      apellido,
-      email,
-      contrasenia: password,
-    }
-  };
-
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (password !== verifyPassword) {
-      alert("Passwords do not match");
+      setResMessage('Las contraseñas deben ser iguales')
     } else {
-      axios.request(options).then(function (response) {
-        setResMessage(response.data);
-        navigate("/login");
-      }).catch((error) => {
-        setResMessage(error.response.data);
-      });
+      const data = await register({ nombre: name, apellido, email, contrasenia: password })
+        console.log(data)
+        data.status === 201 ?
+        navigate('/', {replace: false}) :
+        setResMessage(data.data.code)
     }
   }
-  
+
   return (
     <div className="register">
       <span className="register__title-text">Crea una cuenta</span>

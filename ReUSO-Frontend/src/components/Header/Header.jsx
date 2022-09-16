@@ -36,7 +36,7 @@ const Header = ({ showSideBar, setShowSideBar }) => {
                   alt="profile"
                   className="side-bar__top-image"
                 />
-                <span className="side-bar__top-text">{`${profile.nombre} ${profile.apellido}`}</span>
+                <span className="side-bar__top-text">{`${profile?.nombre} ${profile?.apellido}`}</span>
               </div>
               <div className="side-bar__options">
                 <div className="options">
