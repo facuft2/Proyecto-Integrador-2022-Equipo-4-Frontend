@@ -12,7 +12,7 @@ const Profile = () => {
   const [profile, setProfile] = useState()
   const navigate = useNavigate();
   const myId = localStorage.getItem("id");
-  const isMyProfile = profile?.id === parseInt(myId);
+  const isMyProfile = profile?.id === parseInt(myId, 10);
 
   async function cosito() {
     setProfile(await getUsersById({id: myId}))
@@ -22,6 +22,8 @@ const Profile = () => {
     cosito()
   },[]) 
 
+  console.log(profile)
+
   return (
     <div className="profile">
       <HeaderGen text="Perfil" />
@@ -29,7 +31,7 @@ const Profile = () => {
         <div className="profile__body-info">
           <img
             className="profile__body-info-image"
-            src={fakeUsers[0].icon}
+            src={profile?.foto_perfil}
             alt="profile"
           />
           <span className="profile__body-info-name">{`${profile?.nombre} ${profile?.apellido}`}</span>

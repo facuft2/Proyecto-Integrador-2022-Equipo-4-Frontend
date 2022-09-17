@@ -2,7 +2,7 @@ import axios from "axios";
 import { getUserData, persistSession } from "./helpers";
 
 const apiAxios = axios.create({
-  baseURL: 'http://10.1.8.150:4000',
+  baseURL: 'http://localhost:4000',
   headers: {
     'content-type': 'application/json',
     'Access-Control-Allow-Origin': '*',
@@ -60,13 +60,14 @@ const getUsersById = async ({ id }) => {
   const {
     token,
   } = getUserData();
-  return await apiAxios.get(`users/${id}`,
+  return await apiAxios.get(`/users/${id}`,
     {
       headers: {
         token,
       },
-    }).then(({ data: { usuarios } }) => {
-      return usuarios
+    }).then(({ data }) => {
+      localStorage.setItem('username', `${data.nombre} ${data.apellido}`)
+      return data
     });
 };
 
@@ -74,7 +75,7 @@ const getMyProducts = async () => {
   const {
     token,
   } = getUserData();
-  return await apiAxios.get(`product/my_products`,
+  return await apiAxios.get(`/product/my_products`,
     {
       headers: {
         token,
@@ -94,7 +95,7 @@ const postProducts = async ({
   const {
     token
   } = getUserData();
-  return await apiAxios.post('product', {
+  return await apiAxios.post('/product', {
     titulo,
     descripcion,
     tipo_trato,

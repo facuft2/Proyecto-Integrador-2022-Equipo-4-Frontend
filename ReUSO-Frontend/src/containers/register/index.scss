@@ -2,12 +2,14 @@
 @import '../../assets/colors/index.scss';
 
 .register {
+    padding: 50px 0;
     width: 100vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow-y: auto;
 
     &__input {
         width: 255px;
@@ -17,6 +19,7 @@
         border: 0;
         outline: none;
         font-size: 16px;
+        background-color: $background;
 
         &-container {
             display: flex;
@@ -32,7 +35,7 @@
         border: 0;
         color: #fff;
         width: 253px;
-        height: 52px;
+        min-height: 52px;
         font-weight: 400;
         font-size: 20px;
         letter-spacing: 0.4px;
@@ -59,30 +62,9 @@
         margin-bottom: 15px;
     }
     
-}
-
-.input {
-    &-w-icon {
-        width: 312px;
-        height: 61px;
-        background-color: $white;
-        box-shadow: $boxShadow;
-        border-radius: 10px;
-        border: 1px solid $grey;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        margin: 0 0 12px;
+    &-error {
+        color: $danger;
+        font-size: 12px;
+        margin-top: 5px;
     }
-
-    &-icon {
-        width: 40px;
-    }
-}
-
-::placeholder {
-    color: #686868;
-    font-size: 16px;
-    font-family: $Montserrat;
 }

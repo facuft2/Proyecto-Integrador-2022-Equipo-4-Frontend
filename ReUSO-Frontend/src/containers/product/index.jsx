@@ -17,7 +17,7 @@ const Product = () => {
       setProduct(product)
     }
     fetch()
-  },[])
+  }, [])
 
   return (
     <div className="product">
@@ -25,17 +25,17 @@ const Product = () => {
         <>
           <HeaderGen text={product.titulo} />
           <div className="product__body">
-            <div className="product__body-info">
-              <img
-                className="product__body-info-image"
-                // src={product.usuario.foto_perfil}
-                alt="profile"
-              />
-              <span className="product__body-info-name">
-                {product.usuario.nombre}
-              </span>
-            </div>
             <div className="product__body-data">
+              <div className="product__body-info">
+                <img
+                  className="product__body-info-image"
+                  src={product.usuario.foto_perfil}
+                  alt="profile"
+                />
+                <span className="product__body-info-name">
+                  {product.usuario.nombre}
+                </span>
+              </div>
               <span className="product__body-data-title">
                 {product.titulo}
               </span>
@@ -52,9 +52,11 @@ const Product = () => {
                   {product.descripcion}
                 </span>
               </div>
-              <span className="product__body-data-description-zona">
-                Zona: {product.localidad}
-              </span>
+              { product.localidad &&
+                <span className="product__body-data-description-zona">
+                  Zona: {product.localidad}
+                </span>
+              }
               <span className="product__body-data-description-tipo">
                 Tipo: {product.tipo_trato === "INTERCAMBIO" ? "Intercambio" : "Donacion"}
               </span>

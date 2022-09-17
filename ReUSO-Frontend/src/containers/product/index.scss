@@ -1,26 +1,30 @@
 @import "../../assets/fonts/index.scss";
 @import "../../assets/colors/index.scss";
 
+$marginTop: calc(40px + 1%);
+
 .product {
   overflow-y: hidden;
   height: 100%;
   &__body {
-    margin: 15% 0 0 27px;
+    margin-top: $marginTop;
     height: 70%;
     display: flex;
     flex-direction: column;
+    align-items: center;
 
     &-info {
       display: flex;
       align-items: center;
 
       &-image {
-        width: 24px;
-        height: 24px;
+        width: 32px;
+        height: 32px;
+        border-radius: 32px;
       }
 
       &-name {
-        font-size: 16px;
+        font-size: 15px;
         font-weight: 500;
         margin: 0 0 0 10px;
       }
@@ -32,6 +36,7 @@
 
       &-title {
         margin: 14px 0 7px;
+        font-size: 18px;
       }
 
       &-image {
@@ -49,16 +54,25 @@
         height: 83px;
         border-bottom: 1px solid $grey;
 
+        &-info {
+          font-size: 14px;
+          font-weight: 400;
+        }
+
+        &-tag {
+          padding-bottom: 5px;
+        }
+
         &-zona {
-          margin-top: 10px;
+          margin-top: 6%;
         }
 
         &-tipo {
-          margin-top: 10px;
+          margin-top: 6%;
         }
 
         &-cantidad {
-          margin-top: 10px;
+          margin-top: 6%;
         }
       }
     }

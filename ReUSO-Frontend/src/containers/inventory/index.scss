@@ -16,17 +16,6 @@
             margin-top: 20px;
         }
     }
-
-    &-button {
-        @include button;
-        position: fixed;
-        right: 5px;
-        bottom: 5px;
-        height: 41px;
-        width: 143px;
-        font-size: 16px;
-        background-color: $darkPrimary;
-    }
 }
 
 @media (max-width: 600px) {

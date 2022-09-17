@@ -12,16 +12,23 @@ import { useEffect } from "react";
 
 const Header = ({ showSideBar, setShowSideBar }) => {
   const navigate = useNavigate();
-  const [profile, setProfile] = useState()
+  const [username, setUsername] = useState(localStorage.getItem('username'))
 
   const id = localStorage.getItem('id');
 
-  const cosito = async () => {
-    setProfile(await getUsersById({id}))
+  const getProfile = async () => {
+    const {nombre, apellido} = await getUsersById({id})
+    setUsername(`${nombre} ${apellido}`)
+  }
+
+  const logout = () => {
+    localStorage.removeItem('id')
+    localStorage.removeItem('token')
+    navigate("/login", { replace: false })
   }
 
   useEffect(() => {
-    cosito()
+    username && getProfile()
   },[])
 
   return (
@@ -36,7 +43,7 @@ const Header = ({ showSideBar, setShowSideBar }) => {
                   alt="profile"
                   className="side-bar__top-image"
                 />
-                <span className="side-bar__top-text">{`${profile?.nombre} ${profile?.apellido}`}</span>
+                <span className="side-bar__top-text">{username}</span>
               </div>
               <div className="side-bar__options">
                 <div className="options">
@@ -58,7 +65,7 @@ const Header = ({ showSideBar, setShowSideBar }) => {
               </div>
             </div>
             <div className="side-bar-space">
-              <div className="side-bar-logout" onClick={() => navigate("/login", { replace: false })}>
+              <div className="side-bar-logout" onClick={logout}>
                 <span
                   className="side-bar-logout-text"
                 >

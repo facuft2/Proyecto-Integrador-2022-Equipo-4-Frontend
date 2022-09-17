@@ -1,0 +1,21 @@
+@import "../../assets/fonts/index.scss";
+@import "../../assets/colors/index.scss";
+
+.input {
+    &-w-icon {
+        width: 90%;
+        height: 61px;
+        background-color: $background;
+        // box-shadow: $boxShadow;
+        // border-radius: 10px;
+        border-bottom: 1px solid $grey;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-top: 12px;
+    }
+    &__icon {
+        width: 40px;
+    }
+}

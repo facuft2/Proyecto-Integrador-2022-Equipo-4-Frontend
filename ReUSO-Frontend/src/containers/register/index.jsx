@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import "./index.scss";
 import { Icon } from "@iconify/react";
 import { register } from "../../api";
-import axios from "axios";
+import { useEffect } from "react";
+import { Input } from "../../components/Input/Input";
 
 const Register = () => {
   const [name, setName] = useState();
@@ -12,77 +13,135 @@ const Register = () => {
   const [email, setEmail] = useState();
   const [apellido, setApellido] = useState();
   const [resMessage, setResMessage] = useState();
+  const [nameError, setNameError] = useState();
+  const [passwordError, setPasswordError] = useState();
+  const [verifyPasswordError, setVerifyPasswordError] = useState();
+  const [emailError, setEmailError] = useState();
+  const [apellidoError, setApellidoError] = useState();
 
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
-    if (password !== verifyPassword) {
-      setResMessage('Las contraseñas deben ser iguales')
-    } else {
-      const data = await register({ nombre: name, apellido, email, contrasenia: password })
-        console.log(data)
-        data.status === 201 ?
-        navigate('/', {replace: false}) :
-        setResMessage(data.data.code)
+    if (!name) {
+      setNameError("Ingrese un nombre");
     }
-  }
+    if (!apellido) {
+      setApellidoError("Ingrese un apellido");
+    }
+    if (!email) {
+      setEmailError("Ingrese un email");
+    } else if (!email.includes("@") || !email.includes(".")) {
+      setEmailError("Ingrese un email valido");
+    }
+    if (!password) {
+      setPasswordError("Ingrese una contraseña");
+    } else if (password.length < 8) {
+      setPasswordError("La contraseña debe tener al menos 8 caracteres");
+    } else if (password !== verifyPassword) {
+      setVerifyPasswordError("Las contraseñas no coinciden");
+    }
+
+    if (!verifyPassword) {
+      setVerifyPasswordError("Ingrese una contraseña");
+    } else if (verifyPassword.length < 8) {
+      setVerifyPasswordError("La contraseña debe tener al menos 8 caracteres");
+    } else if (verifyPassword !== password) {
+      setVerifyPasswordError("Las contraseñas no coinciden");
+    }
+
+    if (
+      password &&
+      name &&
+      apellido &&
+      email &&
+      verifyPassword &&
+      (password === verifyPassword) &&
+      (email.includes("@") || email.includes("."))) {
+      try {
+        const response = await register({
+          nombre: name,
+          apellido,
+          email,
+          contrasenia: password,
+        });
+        if (response.status === 201) {
+          navigate("/", { replace: false });
+        }
+      } catch (error) {
+        setResMessage(error.response.data.error)
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (name) {
+      setNameError("");
+    }
+    if (apellido) {
+      setApellidoError("");
+    }
+    if (email) {
+      setEmailError("");
+    }
+    if (password) {
+      setPasswordError("");
+    }
+    if (verifyPassword) {
+      setVerifyPasswordError("");
+    }
+  }, [name, apellido, email, password, verifyPassword]);
 
   return (
     <div className="register">
       <span className="register__title-text">Crea una cuenta</span>
       <div className="register__input-container">
-        <div className="input-w-icon">
-          <Icon icon="bi:person-fill" className="input-icon" height="19" />
-          <input
-            className="register__input"
-            placeholder="Nombre"
-            type="text"
-            name="User"
-            onChange={(e) => setName(e.target.value)}
-          />
-        </div>
-        <div className="input-w-icon">
-          <Icon icon="bi:person-fill" className="input-icon" height="19" />
-          <input
-            className="register__input"
-            placeholder="Apellido"
-            type="text"
-            name="User"
-            onChange={(e) => setApellido(e.target.value)}
-          />
-        </div>
-        <div className="input-w-icon">
-          <Icon icon="ic:round-email" className="input-icon" height="19" />
-          <input
-            className="register__input"
-            placeholder="Email"
-            type="text"
-            name="Email"
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div className="input-w-icon">
-          <Icon icon="bxs:lock" className="input-icon" height="19" />
-          <input
-            className="register__input"
-            placeholder="Contraseña"
-            type="password"
-            name="password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <div className="input-w-icon">
-          <Icon icon="bxs:lock" className="input-icon" height="19" />
-          <input
-            className="register__input"
-            placeholder="Confirmar contraseña"
-            type="password"
-            name="password"
-            onChange={(e) => setVerifyPassword(e.target.value)}
-          />
-        </div>
-        <span>{resMessage?.code === 'Success' ? 'Usuario registrado correctamente' : resMessage?.code}</span>
+        <Input
+          label="Nombre"
+          name="name"
+          type="text"
+          onChange={(value) => setName(value)}
+          error={nameError}
+        >
+          <Icon icon="mdi:account" className="input__icon" />
+        </Input>
+        <Input
+          label="Apellido"
+          name="apellido"
+          type="text"
+          onChange={(value) => setApellido(value)}
+          error={apellidoError}
+        >
+          <Icon icon="mdi:account" className="input__icon" />
+        </Input>
+        <Input
+          label="Email"
+          name="email"
+          type="email"
+          onChange={(value) => setEmail(value)}
+          error={emailError}
+        >
+          <Icon icon="mdi:email" className="input__icon" />
+        </Input>
+        <Input
+          label="Contraseña"
+          name="password"
+          type="password"
+          onChange={(value) => setPassword(value)}
+          error={passwordError}
+        >
+          <Icon icon="mdi:lock" className="input__icon" />
+        </Input>
+        <Input
+          label="Verificar contraseña"
+          name="verifyPassword"
+          type="password"
+          onChange={(value) => setVerifyPassword(value)}
+          error={verifyPasswordError}
+        >
+          <Icon icon="mdi:lock" className="input__icon" />
+        </Input>
       </div>
+      <span className="register-error">{resMessage}</span>
       <button
         className="register__button"
         onClick={handleSubmit}

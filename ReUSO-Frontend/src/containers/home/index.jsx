@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
-import { useNavigate } from "react-router-dom";
+import { AddItemButton } from "../../components/AddItemButton";
 import { Category } from "../../components/Category";
 import { getProducts } from "../../api";
 import "./index.scss";
 
 function Home() {
-  const navigate = useNavigate();
   const [showSideBar, setShowSideBar] = useState(false);
   const [products, setProducts] = useState()
+  
+  const data = async () => {
+    setProducts(await getProducts())
+  }
 
   useEffect(() => {
-    const data = async () => {
-      setProducts(await getProducts())
-    }
     data()
   }, [])
 
@@ -29,10 +29,10 @@ function Home() {
                 <span className="category-see-all">Ver todo</span>
               </div>
               <Category data={data} />
-              <button className="inventory-button" onClick={() => navigate('/addItem', { replace: false })}> Subir objeto </button>
             </div>
           </>
         ))}
+        <AddItemButton />
       </div>
     </div>
   );
