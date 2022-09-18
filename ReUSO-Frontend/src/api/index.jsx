@@ -9,6 +9,7 @@ const apiAxios = axios.create({
   },
 });
 
+// register and login
 const register = (({
   nombre,
   apellido,
@@ -36,6 +37,8 @@ const login = ({
     return response
   });
 
+
+//products
 const getProducts = async () => {
   const { token } = getUserData();
   return await apiAxios.get('/product/categories',
@@ -56,20 +59,6 @@ const getProductsbyId = async ({ id }) => {
     }).then(({ data }) => data);
 };
 
-const getUsersById = async ({ id }) => {
-  const {
-    token,
-  } = getUserData();
-  return await apiAxios.get(`/users/${id}`,
-    {
-      headers: {
-        token,
-      },
-    }).then(({ data }) => {
-      localStorage.setItem('username', `${data.nombre} ${data.apellido}`)
-      return data
-    });
-};
 
 const getMyProducts = async () => {
   const {
@@ -110,6 +99,34 @@ const postProducts = async ({
   })
 }
 
+//users
+const getUsersById = async ({ id }) => {
+  const {
+    token,
+  } = getUserData();
+  return await apiAxios.get(`/users/${id}`,
+    {
+      headers: {
+        token,
+      },
+    }).then(({ data }) => {
+      localStorage.setItem('username', `${data.nombre} ${data.apellido}`)
+      return data
+    });
+};
+
+//categories
+const getCategories = async () => {
+  const {
+    token
+  } = getUserData();
+  return await apiAxios.get('category', {
+    headers: {
+      token,
+    },
+  }).then(({data}) => data)
+}
+
 
 export {
   login,
@@ -117,6 +134,7 @@ export {
   getUsersById,
   getProductsbyId,
   getMyProducts,
+  getCategories,
   postProducts,
   register
 };

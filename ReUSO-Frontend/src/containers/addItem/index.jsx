@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Select from 'react-select'
+
 import HeaderGen from "../../components/HeaderGen";
 import { fakeUsers } from "../../constants";
-import { postProducts } from "../../api";
+import { postProducts, getCategories } from "../../api";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 
 import "./index.scss";
-import { useEffect } from "react";
 
 const AddItem = () => {
   const navigate = useNavigate();
@@ -16,6 +16,8 @@ const AddItem = () => {
   const [descripcion, setDescripcion] = useState();
   const [cantidad, setCantidad] = useState();
   const [tipo_trato, setTipoTrato] = useState("INTERCAMBIO");
+  const [categories, setCategories] = useState();
+  const [category, setCategory] = useState();
   const reader = new FileReader();
   reader.onloadend = () => {
     setShowImage(reader.result)
@@ -26,6 +28,13 @@ const AddItem = () => {
       navigate('/', { replace: false })
     )
   }
+
+  const getCats = async () => { setCategories(await getCategories())};
+
+  useEffect(() => {
+    getCats()
+  },[])
+
 
   return (
     <div className="add-item">
@@ -105,6 +114,17 @@ const AddItem = () => {
           <option value="DONACION">donacion</option>
         </select>
       </div>
+      {/* <div className="add-item__type">
+        <span className="add-item__type-text">Categoria</span>
+        <select className="add-item__type-input" onChange={(e) => setCategory(e.target.value)}>
+          {
+            categories?.category?.map((categoryInfo) => (
+              <option className="add-item__type-input-option" value={categoryInfo.id}>{categoryInfo.nombre}</option>
+            ))
+          }
+        </select>
+      </div> */}
+      <Select options={categories?.category?.map(({nombre}) => nombre)} />
       <div className="add-item__button">
         <button className="add-item__button--cancel" onClick={() => navigate('/', { replace: true })}>Cancelar</button>
         <button className="add-item__button--add" onClick={createProduct}>Agregar producto</button>
