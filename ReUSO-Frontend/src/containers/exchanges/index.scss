@@ -4,7 +4,7 @@
 
 .exchanges {
     &__body {
-        margin: 10% 0 0 0;
+        margin: $marginTop 0 0 0;
         width: 100%;
         display: flex;
         flex-direction: column;
@@ -37,13 +37,6 @@
     }
 }
 
-@media (max-width: 420px) {
-    .exchanges {
-        &__body {
-            margin: 15% 0 0 0;
-        }
-    }
-}
 
 .active {
     background-color: $darkPrimary;
@@ -60,12 +53,3 @@
         color: $white;
     }
 }
-
-@media (max-width: 600px) {
-    .exchanges {
-      &__body {
-        margin: 15% 0 0 0;
-      }
-    }
-  }
-  

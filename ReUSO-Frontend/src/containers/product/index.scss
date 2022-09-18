@@ -1,7 +1,6 @@
 @import "../../assets/fonts/index.scss";
 @import "../../assets/colors/index.scss";
-
-$marginTop: calc(40px + 1%);
+@import "../../assets/styles/index.scss";
 
 .product {
   overflow-y: hidden;

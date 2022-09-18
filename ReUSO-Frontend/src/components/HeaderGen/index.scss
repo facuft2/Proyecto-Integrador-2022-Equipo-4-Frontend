@@ -13,6 +13,7 @@
 
   &-arrow {
     margin: 0 0 0 16px;
+    z-index: 5;
   }
 
   &-text {
@@ -20,7 +21,8 @@
     font-weight: bold;
     color: $lightSecondary;
     display: flex;
-    width: 82%;
+    width: 100%;
     justify-content: center;
+    position: absolute;
   }
 }

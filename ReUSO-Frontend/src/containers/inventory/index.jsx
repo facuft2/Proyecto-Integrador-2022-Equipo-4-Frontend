@@ -10,12 +10,12 @@ import "./index.scss";
 const Inventory = () => {
   const [products, setProducts] = useState()
   const id = localStorage.getItem('id')
-  async function cosito() {
+  async function getProducts() {
     setProducts(await getMyProducts({id}))
   }
 
   useEffect(( ) => {
-    cosito()
+    getProducts()
   },[])
 
   return (
