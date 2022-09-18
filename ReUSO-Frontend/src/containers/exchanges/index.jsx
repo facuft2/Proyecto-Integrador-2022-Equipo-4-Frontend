@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import HeaderGen from "../../components/HeaderGen";
 import { exchangeInfo } from "../../constants/index";
 import ExchangeInfo from "../../components/Exchange_info";

@@ -11,8 +11,6 @@ const Category = ({ data }) => {
     setIsAvailable(contentAvailable < data.producto.length && numeroFlecha + contentAvailable < data.producto.length)
   }, [numeroFlecha])
 
-  console.log(numeroFlecha)
-
   return (
     <div className="card-box">
       {numeroFlecha ? <button className="card-box-button" onClick={() => setNumeroFlecha((value) => value - contentAvailable)}> &lt; </button> : null}

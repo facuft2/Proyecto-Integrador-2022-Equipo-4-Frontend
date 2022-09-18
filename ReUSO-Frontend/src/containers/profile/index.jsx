@@ -14,15 +14,13 @@ const Profile = () => {
   const myId = localStorage.getItem("id");
   const isMyProfile = profile?.id === parseInt(myId, 10);
 
-  async function cosito() {
+  async function getProfile() {
     setProfile(await getUsersById({id: myId}))
   }
 
   useEffect(( ) => {
-    cosito()
+    getProfile()
   },[]) 
-
-  console.log(profile)
 
   return (
     <div className="profile">
