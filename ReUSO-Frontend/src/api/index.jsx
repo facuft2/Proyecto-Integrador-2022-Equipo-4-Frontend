@@ -90,7 +90,8 @@ const postProducts = async ({
   descripcion,
   tipo_trato,
   cantidad,
-  foto
+  foto,
+  categorias
 }) => {
   const {
     token
@@ -100,7 +101,8 @@ const postProducts = async ({
     descripcion,
     tipo_trato,
     cantidad,
-    foto
+    foto,
+    categorias,
   }, {
     headers: {
       token
@@ -110,11 +112,22 @@ const postProducts = async ({
   })
 }
 
+const getCategories = async () => {
+  const { token } = getUserData();
+  return await apiAxios.get('/category',
+    {
+      headers: {
+        token,
+      },
+    }).then(({ data }) => data);
+};
+
 
 export {
   login,
   getProducts,
   getUsersById,
+  getCategories,
   getProductsbyId,
   getMyProducts,
   postProducts,

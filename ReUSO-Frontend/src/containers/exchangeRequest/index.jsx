@@ -15,17 +15,17 @@ const ExchangeRequest = () => {
   useEffect(() => {
     switch (info.status) {
       case "Pendiente...":
-        console.log("Pendiente...", info.status, info.status === "Pendiente...");
+        // console.log("Pendiente...", info.status, info.status === "Pendiente...");
         setColor('#F6C824');
         setButton(<button className="exchange-request__body-bottom-button--canceled"> Cancelar intercambio</button>)
         break;
       case "Exitoso":
-        console.log("Exitoso", info.status, info.status === "Exitoso");
+        // console.log("Exitoso", info.status, info.status === "Exitoso");
         setColor('#4CAF50');
         setButton(<button className="exchange-request__body-bottom-button--accepted"> Ir a whatsapp</button>)
         break;
       default:
-        console.log("default", info.status, info.status === "Pendiente...");
+        // console.log("default", info.status, info.status === "Pendiente...");
         setColor('#AF4C4C');
         setButton(<button className="exchange-request__body-bottom-button--rejected"> Volver al Inicio</button>)
     }

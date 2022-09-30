@@ -10,6 +10,7 @@ const Product = () => {
   const navigate = useNavigate();
   const params = useParams()
   const [product, setProduct] = useState();
+  const userId = parseInt(localStorage.getItem('userId'), 10)
 
   useEffect(() => {
     const fetch = async () => {
@@ -52,7 +53,7 @@ const Product = () => {
                   {product.descripcion}
                 </span>
               </div>
-              { product.localidad &&
+              {product.localidad &&
                 <span className="product__body-data-description-zona">
                   Zona: {product.localidad}
                 </span>
@@ -65,9 +66,15 @@ const Product = () => {
               </span>
             </div>
           </div>
-          <div className="product-button-box">
-            <button className="product-button" onClick={() => { navigate('/exchange') }}>¡Estoy interesado!</button>
-          </div>
+          {
+            userId !== product.userId ?
+              <div className="product-button-box">
+                <button className="product-button" onClick={() => { navigate(`/exchange/${params.id}`) }}>¡Estoy interesado!</button>
+              </div> :
+              <div className="product-button-box">
+                <button className="product-button" onClick={() => { navigate(`/exchange/${params.id}`) }}>Editar mi producto</button>
+              </div>
+          }
         </>
       )}
     </div>

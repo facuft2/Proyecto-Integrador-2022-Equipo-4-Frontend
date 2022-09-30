@@ -26,7 +26,7 @@ function Home() {
             <div className="category-box">
               <div className="category-box__head">
                 <span className="category-title">{data.categoria}</span>
-                <span className="category-see-all">Ver todo</span>
+                {/* <span className="category-see-all">Ver todo</span> */}
               </div>
               <Category data={data} />
             </div>

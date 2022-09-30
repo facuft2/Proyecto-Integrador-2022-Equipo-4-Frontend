@@ -23,7 +23,7 @@ root.render(
         <Route path="/login" element={<SignIn />} />
         <Route path="/register" element={<Register />} />
         <Route path="/product/:id" element={<Product />} />
-        <Route path="/exchange" element={<Exchange1 />} />
+        <Route path="/exchange/:id" element={<Exchange1 />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/inventory" element={<Inventory />} />
         <Route path="/addItem" element={<AddItem />} />

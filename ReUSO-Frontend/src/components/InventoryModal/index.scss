@@ -1,0 +1,48 @@
+@import "../../assets/fonts/index.scss";
+@import "../../assets/colors/index.scss";
+
+.inventory-modal {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__box {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column-reverse;
+    width: 90%;
+    height: 80%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: $boxShadow;
+    padding: 5px;
+    justify-content: flex-end;
+
+    &-close {
+      cursor: pointer;
+      // background-color: $grey;
+      width: 20px;
+      height: 20px;
+    }
+    
+    &-products {
+      width: 100%;
+      height: 98%;
+      grid-gap: 15px;
+      display: grid;
+      // align-items: center;
+      // justify-content: center;
+      grid-template-columns: repeat(auto-fill, minmax(159px, 1fr));
+      grid-auto-rows: 121px;
+      // flex-wrap: wrap;
+    }
+
+    &-item {
+      // margin: 10px;
+    }
+  }
+}

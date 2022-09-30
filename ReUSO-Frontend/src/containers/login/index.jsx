@@ -19,9 +19,9 @@ const SignIn = () => {
       })
   }
 
-  console.error('NOOOOOOOOOOOOOO')
-  console.warn({email, password})
-  console.info('infopati')
+  // console.error('NOOOOOOOOOOOOOO')
+  // console.warn({email, password})
+  // console.info('infopati')
 
   return (
     <div className="sign-in">

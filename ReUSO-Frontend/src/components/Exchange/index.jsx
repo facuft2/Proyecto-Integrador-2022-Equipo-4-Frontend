@@ -5,7 +5,6 @@ import { ReactComponent as Arrow } from "../../assets/iconsInUse/repeat.svg";
 import './index.scss';
 
 const ExchangeWindow = ({myProduct, otherProduct, myProfile, profile}) => {
-    const navigate = useNavigate();
 
     return (
         <div className="exchange-window">

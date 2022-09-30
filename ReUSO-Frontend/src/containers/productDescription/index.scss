@@ -1,6 +1,6 @@
 @import "../../assets/fonts/index.scss";
-@import "../../assets/colors/index.scss";    
-@import "../../assets/styles/index.scss";  
+@import "../../assets/colors/index.scss";
+@import "../../assets/styles/index.scss";
 
 .exchange {
   overflow-y: hidden;
@@ -32,15 +32,24 @@
     }
 
     &-box {
-      width: 309px;
+      width: 70%;
+      max-width: 449px;
       min-height: 182px;
       display: flex;
-      background-color: $white;
-      box-shadow: $boxShadow;
       border-radius: 5px;
       align-items: center;
       justify-content: center;
       flex-direction: column;
+    }
+
+    &-edit {
+      display: flex;
+      max-width: 449px;
+      width: 70%;
+      justify-content: flex-end;
+      margin-top: 5px;
+      cursor: pointer;
+
     }
 
     &-text {
@@ -54,6 +63,8 @@
     margin: $marginTop 0 0 0;
     height: max-content;
     display: flex;
+    max-width: 449px;
+    width: 70%;
     flex-direction: column;
 
     &-info {
@@ -81,7 +92,8 @@
       }
 
       &-image {
-        width: 309px;
+        width: 100%;
+        max-width: 449px;
         height: 182px;
         box-shadow: $boxShadow;
         border-radius: 5px;
@@ -111,7 +123,7 @@
   }
 
   &-button {
-   @include button;
+    @include button;
 
     &-box {
       width: 100%;
@@ -126,7 +138,7 @@
         @include button;
         width: 141px
       }
-  
+
       &--cancel {
         @include button;
         width: 141px;
@@ -144,4 +156,3 @@
     }
   }
 }
-

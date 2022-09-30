@@ -1,10 +1,11 @@
 import React from "react";
+import PropTypes from "prop-types"
 import { useNavigate } from "react-router-dom";
 import './index.scss';
 
-const Object = ({image, id, title, trueque, foto}) => {
+const Object = ({ id, title, trueque, foto, available }) => {
   const navigate = useNavigate();
-
+  
   return (
     <div className="card">
       <img
@@ -12,7 +13,7 @@ const Object = ({image, id, title, trueque, foto}) => {
         alt="card"
         src={foto}
         onClick={() => {
-          navigate(`/product/${id}`);
+          available && navigate(`/product/${id}`);
         }}
       />
       <div className="card-info">
@@ -25,6 +26,14 @@ const Object = ({image, id, title, trueque, foto}) => {
       </div>
     </div>
   );
+};
+
+Object.propTypes = {
+  available: PropTypes.bool
+}
+
+Object.defaultProps = {
+  available: true
 };
 
 export default Object;

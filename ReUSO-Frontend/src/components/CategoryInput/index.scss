@@ -1,0 +1,20 @@
+@import "../../assets/fonts/index.scss";
+@import "../../assets/colors/index.scss";
+
+.category-selected {
+    display: flex;
+    background-color: $primary;
+    border-radius: 5px;
+    color: white;
+    font-size: 14px;
+    margin: 5px 5px 0 0;
+    padding: 3px;
+    width: max-content;
+    align-items: center;
+
+    &__close {
+        margin: 0 0 2px 4px;
+        font-size: 12px;
+        cursor: pointer;
+    }
+}

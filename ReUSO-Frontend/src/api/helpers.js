@@ -2,7 +2,7 @@
 export const persistSession = ({headers, data: {user: {id}}}) => {
     const header = headers['authorization'].split(" ")
     localStorage.setItem('token', header[1]);
-    localStorage.setItem('id', id);
+    localStorage.setItem('userId', id);
 };
 
 

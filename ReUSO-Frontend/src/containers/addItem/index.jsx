@@ -1,31 +1,93 @@
 import React, { useState } from "react";
 import HeaderGen from "../../components/HeaderGen";
 import { fakeUsers } from "../../constants";
-import { postProducts } from "../../api";
+import { postProducts, getCategories } from "../../api";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { ReactComponent as Arrow } from "../../assets/iconsInUse/arrow-down.svg";
+import S3 from 'react-aws-s3';
+import buffer from "buffer";
 
 import "./index.scss";
 import { useEffect } from "react";
+import CategoryInput from "../../components/CategoryInput";
 
 const AddItem = () => {
+  window.Buffer = window.Buffer || buffer.Buffer;
   const navigate = useNavigate();
-  const [image, setImage] = useState(false);
+  const [image, setImage] = useState();
   const [showImage, setShowImage] = useState();
   const [titulo, setTitulo] = useState()
   const [descripcion, setDescripcion] = useState();
   const [cantidad, setCantidad] = useState();
   const [tipo_trato, setTipoTrato] = useState("INTERCAMBIO");
-  const reader = new FileReader();
-  reader.onloadend = () => {
-    setShowImage(reader.result)
-  }
-  
+  const [categorySelected, setCategorySelected] = useState([]);
+  const [categories, setCategories] = useState();
+  const [inputContent, setInputContent] = useState('');
+  const [displayCategories, setDisplayCategories] = useState(false);
+
   const createProduct = () => {
-    postProducts({titulo, descripcion, tipo_trato, cantidad, foto: showImage}).then(
-      navigate('/', { replace: false })
-    )
+    uploadFile().then((data) => {
+      postProducts({
+        titulo, descripcion, tipo_trato, cantidad, foto: data.location, categorias: categorySelected.map(({ id }) => id)
+      }).then(
+        navigate('/', { replace: false })
+      )
+    })
   }
+
+  const removeFromCategories = (data) => {
+    const index = categories.indexOf(data);
+    categories[index] = []
+    const modifyarray = [...categories].flat()
+    setCategories(modifyarray)
+    setCategorySelected((prev) => [...prev, data])
+    setInputContent('')
+  }
+
+  const removeCategory = (data) => {
+    setCategories([...categories, data].sort())
+    const index = categorySelected.indexOf(data);
+    categorySelected[index] = []
+    const modifyarray = [...categorySelected].flat()
+    setCategorySelected(modifyarray)
+  }
+
+  const config = {
+    bucketName: process.env.REACT_APP_BUCKET_NAME,
+    region: process.env.REACT_APP_REGION,
+    accessKeyId: process.env.REACT_APP_ACCESS,
+    secretAccessKey: process.env.REACT_APP_SECRET,
+  }
+
+  const uploadFile = async () => {
+    const ReactS3Client = new S3(config);
+
+    return await ReactS3Client
+      .uploadFile(image, image.name)
+      .then(data => data)
+      .catch(err => console.error(err))
+  }
+
+  async function category() {
+    const allCategories = await getCategories()
+    setCategories(allCategories.category)
+  }
+
+  useEffect(() => {
+    category()
+  }, [])
+
+  useEffect(() => {
+    image && setShowImage(URL.createObjectURL(image))
+  }, [image])
+
+  useEffect(() => {
+    if (inputContent) {
+      setDisplayCategories(true)
+    } else {
+      setDisplayCategories(false)
+    }
+  }, [inputContent])
 
   return (
     <div className="add-item">
@@ -50,11 +112,10 @@ const AddItem = () => {
                 type="file"
                 id="upload"
                 accept="image/*"
-                onChange={(e) => { 
-                  reader.readAsDataURL(e.target.files[0])
-                  setImage(true)
+                onChange={(e) => {
+                  setImage(e.target.files[0])
                 }
-              }
+                }
               />
             </>
           ) : (
@@ -75,8 +136,7 @@ const AddItem = () => {
                   id="upload"
                   accept="image/*"
                   onChange={(e) => {
-                    reader.readAsDataURL(e.target.files[0])
-                    setImage(true)
+                    setImage(e.target.files[0])
                   }}
                 />
               </div>
@@ -86,7 +146,7 @@ const AddItem = () => {
       </div>
       <div className="add-item__name">
         <span className="add-item__name-text">Nombre del producto</span>
-        <textarea onChange={(e) => setTitulo(e.target.value) } type="text" className="add-item__name-input" />
+        <textarea onChange={(e) => setTitulo(e.target.value)} type="text" className="add-item__name-input" />
       </div>
       <div className="add-item__description">
         <span className="add-item__description-text">
@@ -105,9 +165,37 @@ const AddItem = () => {
           <option value="DONACION">donacion</option>
         </select>
       </div>
+      <div className="add-item__type" >
+        <span className="add-item__type-text">Categorias</span>
+        <div className="add-item__categories" >
+          <div className="add-item__categories-input-container">
+            <input type="text"
+              value={inputContent}
+              onFocus={() => setDisplayCategories(true)}
+              onChange={(e) => setInputContent(e.target.value)}
+              className="add-item__categories-input"
+            />
+            <Arrow style={{ transform: `rotate(${displayCategories ? 0 : 90}deg)` }} onClick={() => setDisplayCategories((e) => !e)} />
+          </div>
+          {
+            displayCategories &&
+            categories.filter((data) => data.nombre.includes(inputContent)).map((data) => (
+              <div onClick={() => removeFromCategories(data)} className="add-item__categories-preview">
+                {data.nombre}
+              </div>
+            ))
+          }
+        </div>
+        <div className="add-item__categories-selected">
+          {categorySelected.map((data) => (
+            <CategoryInput name={data.nombre} removeCategory={() => removeCategory(data)} />
+          ))}
+        </div>
+      </div>
+
       <div className="add-item__button">
         <button className="add-item__button--cancel" onClick={() => navigate('/', { replace: true })}>Cancelar</button>
-        <button className="add-item__button--add" onClick={createProduct}>Agregar producto</button>
+        <button className="add-item__button--add" onClick={() => createProduct()}>Agregar producto</button>
       </div>
     </div>
   );

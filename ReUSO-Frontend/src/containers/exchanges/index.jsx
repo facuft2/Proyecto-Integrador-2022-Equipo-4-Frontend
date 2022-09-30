@@ -9,7 +9,7 @@ const Exchanges = () => {
   const [sended, setSended] = useState(false);
   const info = exchangeInfo[0];
 
-  console.log(exchangeInfo.filter((info) => info.recieved !== sended));
+  // console.log(exchangeInfo.filter((info) => info.recieved !== sended));
 
   return (
     <div className="exchanges">
