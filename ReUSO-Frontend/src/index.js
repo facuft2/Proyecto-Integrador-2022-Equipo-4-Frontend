@@ -11,6 +11,7 @@ import Profile from "./containers/profile";
 import Inventory from "./containers/inventory";
 import AddItem from "./containers/addItem";
 import ExchangeRequest from "./containers/exchangeRequest";
+import VisualizeExchange from "./containers/visualizeExchange";
 import Exchanges from "./containers/exchanges";
 import EditProfile from "./containers/editProfile";
 
@@ -24,10 +25,11 @@ root.render(
         <Route path="/register" element={<Register />} />
         <Route path="/product/:id" element={<Product />} />
         <Route path="/exchange/:id" element={<Exchange1 />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile/:id" element={<Profile />} />
         <Route path="/inventory" element={<Inventory />} />
         <Route path="/addItem" element={<AddItem />} />
         <Route path="/exchangeRequest" element={<ExchangeRequest />} />
+        <Route path="/visualizeExchange" element={<VisualizeExchange />} />
         <Route path="/exchanges" element={<Exchanges />} />
         <Route path="/profile/edit" element={<EditProfile />} />
       </Routes>

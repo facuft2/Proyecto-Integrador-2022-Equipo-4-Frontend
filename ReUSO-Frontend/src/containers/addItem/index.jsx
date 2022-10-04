@@ -28,7 +28,7 @@ const AddItem = () => {
   const createProduct = () => {
     uploadFile().then((data) => {
       postProducts({
-        titulo, descripcion, tipo_trato, cantidad, foto: data.location, categorias: categorySelected.map(({ id }) => id)
+        titulo, descripcion, tipo_trato, cantidad, foto: data, categorias: categorySelected.map(({ id }) => id)
       }).then(
         navigate('/', { replace: false })
       )
@@ -60,12 +60,13 @@ const AddItem = () => {
   }
 
   const uploadFile = async () => {
-    const ReactS3Client = new S3(config);
+    // const ReactS3Client = new S3(config);
 
-    return await ReactS3Client
-      .uploadFile(image, image.name)
-      .then(data => data)
-      .catch(err => console.error(err))
+    // return await ReactS3Client
+    //   .uploadFile(image, image.name)
+    //   .then(data => data)
+    //   .catch(err => console.error(err))
+    return 'https://static.vecteezy.com/packs/media/vectors/term-bg-1-666de2d9.jpg'
   }
 
   async function category() {

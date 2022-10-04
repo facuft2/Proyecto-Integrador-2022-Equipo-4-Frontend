@@ -27,20 +27,24 @@ export const InventoryModal = ({ setProduct, setModal }) => {
   return (
     <div className="inventory-modal">
       <div className="inventory-modal__box">
-        <div className="inventory-modal__box-products">
-          {products?.map((card) => (
-            <div className="inventory-modal__box-item" onClick={() => setMyProduct(card.id)}>
-              <Object
-                foto={card?.foto}
-                id={card?.id}
-                title={card?.titulo}
-                trueque={card?.trueque === "INTERCAMBIO" ? true : false}
-                available={false}
-              />
-            </div>
-          ))}
-        </div>
-        <Cross className="inventory-modal__box-close" height="240px" onClick={() => setModal(false)}/>
+        {products?.length > 0 ? (
+          <div className="inventory-modal__box-products">
+            {products?.map((card) => (
+              <div className="inventory-modal__box-item" onClick={() => setMyProduct(card.id)}>
+                <Object
+                  foto={card?.foto}
+                  id={card?.id}
+                  title={card?.titulo}
+                  trueque={card?.trueque === "INTERCAMBIO" ? true : false}
+                  available={false}
+                />
+              </div>
+            ))}
+          </div>
+        ) : 
+          <div className="inventory-modal__box-products-empty"> No tienes productos, ¡sube uno! </div>
+        }
+        <Cross className="inventory-modal__box-close" height="240px" onClick={() => setModal(false)} />
       </div>
     </div>
   )

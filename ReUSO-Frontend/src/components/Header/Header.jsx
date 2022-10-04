@@ -14,7 +14,7 @@ const Header = ({ showSideBar, setShowSideBar }) => {
   const navigate = useNavigate();
   const [username, setUsername] = useState(localStorage.getItem('username'))
 
-  const id = localStorage.getItem('id');
+  const id = localStorage.getItem('userId');
 
   const getProfile = async () => {
     const {nombre, apellido} = await getUsersById({id})
@@ -22,7 +22,7 @@ const Header = ({ showSideBar, setShowSideBar }) => {
   }
 
   const logout = () => {
-    localStorage.removeItem('id')
+    localStorage.removeItem('userId')
     localStorage.removeItem('token')
     navigate("/login", { replace: false })
   }
@@ -50,7 +50,7 @@ const Header = ({ showSideBar, setShowSideBar }) => {
                   <Icon icon="ant-design:home-outlined" height="15" />
                   <span classname="options-text"> Inicio </span>
                 </div>
-                <div className="options" onClick={() => {navigate('/profile')}}>
+                <div className="options" onClick={() => {navigate(`/profile/${id}`)}}>
                   <Icon icon="ant-design:user-outlined" height="15" />
                   <span classname="options-text"> Perfil </span>
                 </div>

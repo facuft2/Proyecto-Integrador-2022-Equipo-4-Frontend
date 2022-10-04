@@ -31,14 +31,19 @@
       font-size: 14px;
     }
 
+    &-data {
+      &-title {
+        width: 100%;
+        margin-bottom: 7px;
+      }
+    }
+
     &-box {
       width: 70%;
       max-width: 449px;
-      min-height: 182px;
       display: flex;
       border-radius: 5px;
       align-items: center;
-      justify-content: center;
       flex-direction: column;
     }
 

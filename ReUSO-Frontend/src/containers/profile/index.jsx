@@ -4,6 +4,7 @@ import Object from "../../components/Object";
 import { fakeUsers } from "../../constants";
 import { useNavigate } from "react-router-dom";
 import { getUsersById } from "../../api";
+import { useParams } from "react-router-dom";
 
 import "./index.scss";
 import { useEffect } from "react";
@@ -11,11 +12,11 @@ import { useEffect } from "react";
 const Profile = () => {
   const [profile, setProfile] = useState()
   const navigate = useNavigate();
-  const myId = localStorage.getItem("id");
-  const isMyProfile = profile?.id === parseInt(myId, 10);
+  const {id} = useParams()
+  const isMyProfile = id !== parseInt(localStorage.getItem('userId'), 10);
 
   async function getProfile() {
-    setProfile(await getUsersById({id: myId}))
+    setProfile(await getUsersById({id}))
   }
 
   useEffect(( ) => {
@@ -50,7 +51,7 @@ const Profile = () => {
             <span>{profile?.producto?.length}</span>
           </div>
         </div>
-        {isMyProfile && (
+        {!isMyProfile && (
           <div className="profile-edit">
             <button className="profile-edit-button" onClick={() => navigate('/profile/edit')}>Editar perfil</button>
           </div>

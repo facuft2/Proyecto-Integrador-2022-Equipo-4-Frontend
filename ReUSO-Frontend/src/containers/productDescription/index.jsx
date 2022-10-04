@@ -3,16 +3,23 @@ import HeaderGen from "../../components/HeaderGen";
 import { InventoryModal } from "../../components/InventoryModal";
 import { productWithUser } from "../../constants";
 import { ReactComponent as Arrow } from "../../assets/iconsInUse/repeat.svg";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { getProductsbyId } from "../../api";
 
 import "./index.scss";
 
 const Exchange1 = () => {
+  const navigate = useNavigate();
   const [product, setProduct] = useState();
   const [productToExchange, setProductToExchange] = useState();
   const [modal, setModal] = useState(false);
   const params = useParams()
+
+  const submitExchange = () => {
+    localStorage.setItem('myItemToExchange', product?.id)
+    localStorage.setItem('itemToRecieve', params.id )
+    navigate('/visualizeExchange')
+  }
 
   useEffect(() => {
     const fetch = async () => {
@@ -42,11 +49,11 @@ const Exchange1 = () => {
             {productWithUser.userInfo.name}
           </span>
         </div>
-        <span className="product__body-data-title">
+        <span className="exchange__body-data-title">
           {productToExchange?.titulo}
         </span>
         <img
-          className="product__body-data-image"
+          className="exchange__body-data-image"
           src={productToExchange?.foto}
           alt="product"
         />
@@ -58,27 +65,32 @@ const Exchange1 = () => {
         {!product ? (
           <>
             <span className="exchange__my-item-text">
-              Seleccione un objeto de inventario.
+              Seleccione un objeto del inventario.
             </span>
             <button onClick={() => setModal(true)} className="exchange__my-item-button">Seleccionar...</button>
           </>
         ) : (
-          <img
-            className="product__body-data-image"
-            src={product.foto}
-            alt="product"
-          />
+          <>
+            <span className="exchange__my-item-data-title">
+              {product?.titulo}
+            </span>
+            <img
+              className="exchange__body-data-image"
+              src={product.foto}
+              alt="product"
+            />
+          </>
         )}
       </div>
-      {product && <span className="exchange__my-item-edit" onClick={() => setModal(true)}>Editar producto</span>}
-      {modal && <InventoryModal setProduct={setProduct} setModal={setModal}/>}
+      {product && <span className="exchange__my-item-edit" onClick={() => setModal(true)}>Elegir otro producto</span>}
+      {modal && <InventoryModal setProduct={setProduct} setModal={setModal} />}
       <div className="exchange-button-box">
         {product ? (
           <>
             <button className="exchange-button-display--cancel">
               Cancelar
             </button>
-            <button className="exchange-button-display--confirm">
+            <button className="exchange-button-display--confirm" onClick={submitExchange}>
               Confirmar
             </button>
           </>
