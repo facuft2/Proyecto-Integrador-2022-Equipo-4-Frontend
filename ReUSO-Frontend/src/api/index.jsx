@@ -66,7 +66,6 @@ const getUsersById = async ({ id }) => {
         token,
       },
     }).then(({ data }) => {
-      localStorage.setItem('username', `${data.nombre} ${data.apellido}`)
       return data
     });
 };
@@ -122,6 +121,19 @@ const getCategories = async () => {
     }).then(({ data }) => data);
 };
 
+const postExchange = async ({idO, idR, message}) => {
+  const { token } = getUserData();
+  return await apiAxios.post(`/exchange/${idR}/${idO}`, 
+  {
+    message
+  },
+  {
+    headers: {
+      token,
+    },
+  }).then(({data}) => data);
+}
+
 
 export {
   login,
@@ -131,5 +143,6 @@ export {
   getProductsbyId,
   getMyProducts,
   postProducts,
+  postExchange,
   register
 };

@@ -4,7 +4,7 @@ import { fakeUsers } from "../../constants";
 import { postProducts, getCategories } from "../../api";
 import { useNavigate } from "react-router-dom";
 import { ReactComponent as Arrow } from "../../assets/iconsInUse/arrow-down.svg";
-import S3 from 'react-aws-s3';
+// import S3 from 'react-aws-s3';
 import buffer from "buffer";
 
 import "./index.scss";
@@ -24,6 +24,7 @@ const AddItem = () => {
   const [categories, setCategories] = useState();
   const [inputContent, setInputContent] = useState('');
   const [displayCategories, setDisplayCategories] = useState(false);
+  const foto_perfil = localStorage.getItem('fotoPerfil');
 
   const createProduct = () => {
     uploadFile().then((data) => {
@@ -73,6 +74,8 @@ const AddItem = () => {
     const allCategories = await getCategories()
     setCategories(allCategories.category)
   }
+
+
 
   useEffect(() => {
     category()
@@ -180,7 +183,7 @@ const AddItem = () => {
           </div>
           {
             displayCategories &&
-            categories.filter((data) => data.nombre.includes(inputContent)).map((data) => (
+            categories?.filter((data) => data.nombre.includes(inputContent)).map((data) => (
               <div onClick={() => removeFromCategories(data)} className="add-item__categories-preview">
                 {data.nombre}
               </div>

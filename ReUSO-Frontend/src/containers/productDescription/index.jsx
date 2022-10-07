@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import HeaderGen from "../../components/HeaderGen";
 import { InventoryModal } from "../../components/InventoryModal";
-import { productWithUser } from "../../constants";
+// import { productWithUser } from "../../constants";
 import { ReactComponent as Arrow } from "../../assets/iconsInUse/repeat.svg";
 import { useParams, useNavigate } from "react-router-dom";
 import { getProductsbyId } from "../../api";
@@ -17,15 +17,16 @@ const Exchange1 = () => {
 
   const submitExchange = () => {
     localStorage.setItem('myItemToExchange', product?.id)
-    localStorage.setItem('itemToRecieve', params.id )
+    localStorage.setItem('itemToRecieve', params.id)
     navigate('/visualizeExchange')
   }
 
+  const fetch = async () => {
+    const { product } = await getProductsbyId({ id: params.id })
+    setProductToExchange(product)
+  }
+
   useEffect(() => {
-    const fetch = async () => {
-      const { product } = await getProductsbyId({ id: params.id })
-      setProductToExchange(product)
-    }
     fetch()
   }, [])
 
@@ -41,12 +42,12 @@ const Exchange1 = () => {
           <div>
             <img
               className="exchange__body-info-image"
-              src={productWithUser.userInfo.icon}
+              src={productToExchange?.usuario?.foto_perfil}
               alt="profile"
             />
           </div>
           <span className="exchange__body-info-name">
-            {productWithUser.userInfo.name}
+            {productToExchange?.usuario?.nombre}
           </span>
         </div>
         <span className="exchange__body-data-title">

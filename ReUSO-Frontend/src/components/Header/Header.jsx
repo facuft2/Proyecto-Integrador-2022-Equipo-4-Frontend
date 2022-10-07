@@ -13,12 +13,14 @@ import { useEffect } from "react";
 const Header = ({ showSideBar, setShowSideBar }) => {
   const navigate = useNavigate();
   const [username, setUsername] = useState(localStorage.getItem('username'))
+  const [foto, setFoto] = useState()
 
   const id = localStorage.getItem('userId');
 
   const getProfile = async () => {
-    const {nombre, apellido} = await getUsersById({id})
+    const {nombre, apellido, foto_perfil} = await getUsersById({id})
     setUsername(`${nombre} ${apellido}`)
+    setFoto(foto_perfil)
   }
 
   const logout = () => {
@@ -39,7 +41,7 @@ const Header = ({ showSideBar, setShowSideBar }) => {
             <div>
               <div className="side-bar__top">
                 <img
-                  src="https://upload.wikimedia.org/wikipedia/commons/a/a0/Agust%C3%ADncasanova_%28cropped%29.jpg"
+                  src={foto}
                   alt="profile"
                   className="side-bar__top-image"
                 />

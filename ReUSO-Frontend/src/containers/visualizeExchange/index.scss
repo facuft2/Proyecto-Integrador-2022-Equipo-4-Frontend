@@ -2,7 +2,7 @@
 @import "../../assets/colors/index.scss";
 @import "../../assets/styles/index.scss";
 
-.exchange-request {
+.visualize-exchange {
   width: 100%;
   height: 100%;
   display: flex;
@@ -15,28 +15,34 @@
     flex-direction: column;
     width: 100%;
     height: 100%;
-    margin: $marginTop;
+    margin-top: $marginTop;
 
     &-bottom {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 10px;
+      flex-direction: row;
       width: 100%;
-      position: absolute;
+      height: 100%;
+      // position: absolute;
       bottom: 20px;
 
-      &-button--canceled {
+      &-button--cancel {
         @include invertedButton();
-        border: 1px solid $danger;
-        color: $danger;
+        // border: 1px solid $danger;
+        // color: $danger;
+        width: 45%;
         margin: 0 0 20px;
+
       }
 
       &-button--accepted {
         @include invertedButton();
-        border: 1px solid $whatsapp;
-        color: $whatsapp;
+        // border: 1px solid $whatsapp;
+        background-color: $primary;
+        color: $white;
+        width: 45%;
         margin: 0 0 20px;
       }
 
@@ -64,6 +70,8 @@
 
     &-message {
       @include input;
+      overflow: auto;
+      height: auto;
 
       &-box {
         display: flex;
@@ -71,7 +79,7 @@
         margin-top: 5%;
         width: 90%;
         padding: 5px;
-        height: max-content;
+        height: 100px;
         border-bottom: 1px;
 
         &-text {
@@ -85,28 +93,29 @@
           color: $dark;
         }
       }
+    }
 
-      &-description {
-        display: flex;
-        flex-direction: column;
-        margin-top: 10%;
-        width: 90%;
-        padding: 5px;
-        height: max-content;
-        border-bottom: 1px;
+    &-description {
+      display: flex;
+      flex-direction: column;
+      margin-top: 10%;
+      width: 90%;
+      padding: 5px;
+      height: max-content;
+      border-bottom: 1px;
 
-        &-text {
-          font-size: 16px;
-          color: $darkGrey;
-        }
+      &-text {
+        font-size: 16px;
+        color: $darkGrey;
+      }
 
-        &-info {
-          font-size: 14px;
-          color: $dark;
-          margin-top: 10px;
-        }
+      &-info {
+        font-size: 14px;
+        color: $dark;
+        margin-top: 10px;
       }
     }
+
 
     &__state {
       margin-top: 10%;
@@ -125,7 +134,7 @@
 }
 
 @media (max-width: 600px) {
-  .exchange-request {
+  .visualize-exchange {
     &__state {
       margin-top: 15%;
     }
