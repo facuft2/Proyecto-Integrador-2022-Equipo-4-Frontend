@@ -7,14 +7,12 @@ import UserInfo from "../../components/UserInfo";
 import { useNavigate } from "react-router-dom";
 
 import "./index.scss";
-import { element } from "prop-types";
 
 const VisualizeExchange = () => {
-  const info = exchangeInfo[1];
-  const [color, setColor] = useState("");
-  const [button, setButton] = useState("");
-  const [myProduct, setMyProduct] = useState()
-  const [otherProduct, setOtherProduct] = useState()
+  const navigate = useNavigate();
+  const [myProduct, setMyProduct] = useState();
+  const [otherProduct, setOtherProduct] = useState();
+  const [message, setMessage] = useState();
   const [user, setUser] = useState();
   
   const fetch = async () => {
@@ -27,8 +25,11 @@ const VisualizeExchange = () => {
   }
 
   const createExchange = async () => {
-    const exchange = await postExchange({idO: myProduct?.product?.id, idR: otherProduct?.product?.id})
-    return exchange
+    postExchange({
+      idO: myProduct?.product?.id, idR: otherProduct?.product?.id, message
+    }).then(() => {
+      navigate('/', {replace: false})
+    })
   }
   
   useEffect(() => {
@@ -51,11 +52,11 @@ const VisualizeExchange = () => {
         </div>
         <div className="visualize-exchange__body-message-box">
           <span className="visualize-exchange__body-message-text">Enviale un mensaje!</span>
-          <textarea className="visualize-exchange__body-message" placeholder="¡Hola!, estoy interesado en este producto" />
+          <textarea className="visualize-exchange__body-message" onChange={(e) => setMessage(e.target.value)} placeholder="¡Hola!, estoy interesado en este producto" />
         </div>
         <div className="visualize-exchange__body-bottom">
           <button className="visualize-exchange__body-bottom-button--cancel">Cancelar</button>
-          <button style={{  }} className="visualize-exchange__body-bottom-button--accepted" onClick={createExchange}>Enviar</button>
+          <button style={{pointerEvents: !message && "none"}} className="visualize-exchange__body-bottom-button--accepted" onClick={createExchange}>Enviar</button>
         </div>
       </div>
     </div>

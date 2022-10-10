@@ -48,7 +48,7 @@ const getProducts = async () => {
 
 const getProductsbyId = async ({ id }) => {
   const { token } = getUserData();
-  return await apiAxios.get(`/product/${id}`,
+  return await apiAxios.get(`/product?id=${id}`,
     {
       headers: {
         token,
@@ -125,7 +125,7 @@ const postExchange = async ({idO, idR, message}) => {
   const { token } = getUserData();
   return await apiAxios.post(`/exchange/${idR}/${idO}`, 
   {
-    message
+    mensaje: message
   },
   {
     headers: {
