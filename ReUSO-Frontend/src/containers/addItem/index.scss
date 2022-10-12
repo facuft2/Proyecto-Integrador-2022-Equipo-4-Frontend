@@ -4,6 +4,13 @@
 
 .add-item {
   height: 100%;
+  display: flex;
+  justify-content: center;
+  
+  &__body {
+    width: 500px;
+    max-width: 500px;
+  }
 
   &__button {
     width: 100%;

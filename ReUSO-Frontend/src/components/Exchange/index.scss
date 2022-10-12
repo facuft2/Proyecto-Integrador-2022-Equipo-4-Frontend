@@ -3,7 +3,7 @@
 
 .exchange-window {
     width: 90%;
-    height: 20%;
+    // height: 20%;
     background-color: $white;
     border-radius: 10px;
     padding: 10px;
@@ -22,7 +22,8 @@
         font-size: 14px;
 
         &-image {
-            width: 144px;
+            width: 107px;
+            border-radius: 5px;
             height: 91px;
         }
 

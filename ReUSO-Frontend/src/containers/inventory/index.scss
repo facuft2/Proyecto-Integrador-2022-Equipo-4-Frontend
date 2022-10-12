@@ -3,26 +3,31 @@
 @import "../../assets/styles/index.scss";
 
 .inventory {
-    display: flex;
-    &__body {
-        margin: 10% 0 0 0;
-        display: flex;
-        flex-direction: row; 
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-        width: 100%;
+  display: flex;
+  justify-content: center;
 
-        &-item {
-            margin-top: 20px;
-        }
+  &__body {
+    margin-top: calc(50px + 1%);
+    grid-gap: 15px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(159px, 1fr));
+    grid-auto-rows: 121px;
+    width: 100%;
+    max-width: 500px;
+
+    &-item {
+      // margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
+  }
 }
 
 @media (max-width: 600px) {
-    .inventory {
-      &__body {
-        margin: 15% 0 0 0;
-      }
+  .inventory {
+    &__body {
+      margin: 15% 0 0 0;
     }
   }
-  
+}

@@ -40,7 +40,7 @@
 
     &-box {
       width: 70%;
-      max-width: 449px;
+      max-width: 300px;
       display: flex;
       border-radius: 5px;
       align-items: center;
@@ -49,7 +49,7 @@
 
     &-edit {
       display: flex;
-      max-width: 449px;
+      max-width: 300px;
       width: 70%;
       justify-content: flex-end;
       margin-top: 5px;
@@ -70,6 +70,7 @@
     display: flex;
     max-width: 449px;
     width: 70%;
+    max-width: 300px;
     flex-direction: column;
 
     &-info {
@@ -133,6 +134,7 @@
 
     &-box {
       width: 100%;
+      max-width: 300px;
       height: 100%;
       display: flex;
       align-items: flex-end;

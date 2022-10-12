@@ -18,7 +18,7 @@ const UserInfo = ({profile}) => {
                     <span className="user-info-stats-exchange-number">{profile?.cant_intercambio}</span>
                 </div>
                 <div className="user-info-stats-objects">
-                    <span className="user-info-stats-objects-number">{profile?.producto.length}</span>
+                    <span className="user-info-stats-objects-number">{profile?.producto?.length}</span>
                 </div>
                 <div className="user-info-stats-likes">
                     <span className="user-info-stats-likes-number">3</span>

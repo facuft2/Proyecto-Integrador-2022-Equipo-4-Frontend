@@ -3,9 +3,14 @@
 @import "../../assets/styles/index.scss";
 
 .exchanges {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     &__body {
         margin: $marginTop 0 0 0;
         width: 100%;
+        max-width: 500px;
         display: flex;
         flex-direction: column;
         align-items: center;

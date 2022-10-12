@@ -36,11 +36,17 @@
     }
 
     &-box {
-      display: flex;
-      flex-direction: row;
-      margin: 15px 0 0 0;
-      flex-wrap: wrap;
-      justify-content: space-evenly;
+      margin-top: 15px;
+      grid-gap: 30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(159px, 1fr));
+      grid-auto-rows: 121px;
+
+      &-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
     }
   }
 
@@ -51,6 +57,7 @@
     flex-direction: column;
     text-align: center;
     width: 100%;
+    max-width: 500px;
 
     &-data {
       display: flex;
@@ -108,4 +115,3 @@
 // .card {
 //   margin-top: 15px;
 // }
-

@@ -36,9 +36,9 @@ const login = ({
     return response
   });
 
-const getProducts = async () => {
+const getProducts = () => {
   const { token } = getUserData();
-  return await apiAxios.get('/product/categories',
+  return apiAxios.get('/product/categories',
     {
       headers: {
         token,
@@ -46,9 +46,9 @@ const getProducts = async () => {
     }).then(({ data }) => data);
 };
 
-const getProductsbyId = async ({ id }) => {
+const getProductsbyId = ({ id }) => {
   const { token } = getUserData();
-  return await apiAxios.get(`/product?id=${id}`,
+  return apiAxios.get(`/product?id=${id}`,
     {
       headers: {
         token,
@@ -56,11 +56,11 @@ const getProductsbyId = async ({ id }) => {
     }).then(({ data }) => data);
 };
 
-const getUsersById = async ({ id }) => {
+const getUsersById = ({ id }) => {
   const {
     token,
   } = getUserData();
-  return await apiAxios.get(`/users/${id}`,
+  return apiAxios.get(`/users/${id}`,
     {
       headers: {
         token,
@@ -70,11 +70,11 @@ const getUsersById = async ({ id }) => {
     });
 };
 
-const getMyProducts = async () => {
+const getMyProducts = () => {
   const {
     token,
   } = getUserData();
-  return await apiAxios.get(`/product/my_products`,
+  return apiAxios.get(`/product/my_products`,
     {
       headers: {
         token,
@@ -84,7 +84,7 @@ const getMyProducts = async () => {
     });
 };
 
-const postProducts = async ({
+const postProducts = ({
   titulo,
   descripcion,
   tipo_trato,
@@ -95,7 +95,7 @@ const postProducts = async ({
   const {
     token
   } = getUserData();
-  return await apiAxios.post('/product', {
+  return apiAxios.post('/product', {
     titulo,
     descripcion,
     tipo_trato,
@@ -111,9 +111,9 @@ const postProducts = async ({
   })
 }
 
-const getCategories = async () => {
+const getCategories = () => {
   const { token } = getUserData();
-  return await apiAxios.get('/category',
+  return apiAxios.get('/category',
     {
       headers: {
         token,
@@ -121,9 +121,9 @@ const getCategories = async () => {
     }).then(({ data }) => data);
 };
 
-const postExchange = async ({idO, idR, message}) => {
+const postExchange = ({idO, idR, message}) => {
   const { token } = getUserData();
-  return await apiAxios.post(`/exchange/${idR}/${idO}`, 
+  return apiAxios.post(`/exchange/${idR}/${idO}`, 
   {
     mensaje: message
   },
@@ -132,6 +132,25 @@ const postExchange = async ({idO, idR, message}) => {
       token,
     },
   }).then(({data}) => data);
+}
+
+const getExchangeByParams = (sended) => {
+  const { token } = getUserData();
+  const exchange = sended ? "enviado" : "recibido";
+  return apiAxios.get(`/exchange?exchangeType=${exchange}`, {
+    headers: {
+      token,
+    }
+  }).then(({data}) => data)
+}
+
+const getExchangeById = (id) => {
+  const { token } = getUserData();
+  return apiAxios.get(`/exchange/${id}`, {
+    headers: {
+      token,
+    }
+  }).then(({data}) => data)
 }
 
 
@@ -144,5 +163,7 @@ export {
   getMyProducts,
   postProducts,
   postExchange,
-  register
+  register,
+  getExchangeByParams,
+  getExchangeById,
 };

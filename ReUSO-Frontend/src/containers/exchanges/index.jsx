@@ -1,15 +1,23 @@
 import React, { useState } from "react";
 import HeaderGen from "../../components/HeaderGen";
-import { exchangeInfo } from "../../constants/index";
+// import { exchangeInfo } from "../../constants/index";
 import ExchangeInfo from "../../components/Exchange_info";
+import { getExchangeByParams } from "../../api";
 
 import "./index.scss";
+import { useEffect } from "react";
 
 const Exchanges = () => {
   const [sended, setSended] = useState(false);
-  const info = exchangeInfo[0];
+  const [exchanges, setExchanges] = useState()
 
-  // console.log(exchangeInfo.filter((info) => info.recieved !== sended));
+  useEffect(() => {
+    Promise.all(getExchangeByParams(sended)
+      .then((data) => {
+        setExchanges(data)
+      })
+      .catch())
+  }, [sended])
 
   return (
     <div className="exchanges">
@@ -21,8 +29,8 @@ const Exchanges = () => {
         </div>
         <div className="exchanges__body-items">
           {
-            exchangeInfo.filter((info) => info.recieved !== sended).map((info) => (
-              <ExchangeInfo myProduct={info.myProduct} otherProduct={info.otherProduct} recieved={info.recieved} />
+            exchanges?.map(({ producto_enviado, producto_recibido, id }) => (
+              <ExchangeInfo myProduct={producto_enviado} otherProduct={producto_recibido} recieved={!sended} exchangeId={id} />
             ))
           }
         </div>

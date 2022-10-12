@@ -12,16 +12,16 @@ import { useEffect } from "react";
 const Profile = () => {
   const [profile, setProfile] = useState()
   const navigate = useNavigate();
-  const {id} = useParams()
+  const { id } = useParams()
   const isMyProfile = id !== parseInt(localStorage.getItem('userId'), 10);
 
   async function getProfile() {
-    setProfile(await getUsersById({id}))
+    setProfile(await getUsersById({ id }))
   }
 
-  useEffect(( ) => {
+  useEffect(() => {
     getProfile()
-  },[]) 
+  }, [])
 
   return (
     <div className="profile">
@@ -61,13 +61,15 @@ const Profile = () => {
             Objetos para intercambiar
           </span>
           <div className="profile__card-box">
-            {profile?.producto?.map(({titulo, tipo_trato, id, foto}) => (
-              <Object
-                foto={foto}
-                id={id}
-                title={titulo}
-                trueque={tipo_trato === "INTERCAMBIO" ? true : false}
-              />
+            {profile?.producto?.map(({ titulo, tipo_trato, id, foto }) => (
+              <div className="profile__card-box-item">
+                <Object
+                  foto={foto}
+                  id={id}
+                  title={titulo}
+                  trueque={tipo_trato === "INTERCAMBIO" ? true : false}
+                />
+              </div>
             ))}
           </div>
         </div>

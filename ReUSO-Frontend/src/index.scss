@@ -8,11 +8,16 @@ body {
   width: 100vw;
   height: 100vh;
   font-family: $Montserrat;
+  overflow-x: hidden;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+img {
+  object-fit: cover;
 }
 
 #root {

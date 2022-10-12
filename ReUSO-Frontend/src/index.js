@@ -28,7 +28,7 @@ root.render(
         <Route path="/profile/:id" element={<Profile />} />
         <Route path="/inventory" element={<Inventory />} />
         <Route path="/addItem" element={<AddItem />} />
-        <Route path="/exchangeRequest" element={<ExchangeRequest />} />
+        <Route path="/exchangeRequest/:id" element={<ExchangeRequest />} />
         <Route path="/visualizeExchange" element={<VisualizeExchange />} />
         <Route path="/exchanges" element={<Exchanges />} />
         <Route path="/profile/edit" element={<EditProfile />} />

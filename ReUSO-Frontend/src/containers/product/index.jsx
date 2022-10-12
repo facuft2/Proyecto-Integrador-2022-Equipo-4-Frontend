@@ -65,7 +65,6 @@ const Product = () => {
                 Cantidad: {product.cantidad}
               </span>
             </div>
-          </div>
           {
             userId !== product.userId ?
               <div className="product-button-box">
@@ -75,6 +74,7 @@ const Product = () => {
                 <button className="product-button" onClick={() => { navigate(`/exchange/${params.id}`) }}>Editar mi producto</button>
               </div>
           }
+          </div>
         </>
       )}
     </div>

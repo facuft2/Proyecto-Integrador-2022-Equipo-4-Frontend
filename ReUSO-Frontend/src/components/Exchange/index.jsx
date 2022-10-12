@@ -5,7 +5,6 @@ import { ReactComponent as Arrow } from "../../assets/iconsInUse/repeat.svg";
 import './index.scss';
 
 const ExchangeWindow = ({myProduct, otherProduct, myProfile, otherProfile}) => {
-
     return (
         <div className="exchange-window">
             <div className="exchange-window__object">
