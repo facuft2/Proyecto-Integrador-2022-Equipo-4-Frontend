@@ -1,0 +1,33 @@
+@import "../../assets/fonts/index.scss";
+@import "../../assets/colors/index.scss";
+@import "../../assets/styles/index.scss";
+
+.inventory {
+  display: flex;
+  justify-content: center;
+
+  &__body {
+    margin-top: calc(50px + 1%);
+    grid-gap: 15px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(159px, 1fr));
+    grid-auto-rows: 121px;
+    width: 100%;
+    max-width: 500px;
+
+    &-item {
+      // margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .inventory {
+    &__body {
+      margin: 15% 0 0 0;
+    }
+  }
+}

@@ -1,0 +1,81 @@
+@import "../../assets/fonts/index.scss";
+@import "../../assets/colors/index.scss";
+@import "../../assets/styles/index.scss";
+
+.exchange-info {
+    width: 90%;
+    height: 20%;
+    background-color: $white;
+    border-radius: 10px;
+    padding: 10px;
+    border: none;
+    box-shadow: $boxShadow;
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+
+    &__button {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &-buttons {
+            display: flex;
+            justify-content: space-evenly;
+            width: 100%;
+        }
+
+        &-button {
+            @include button();
+            margin-top: 10px;
+            width: 86%;
+        }
+
+        &-accept {
+            @include invertedButton();
+            width: 40%;
+        }
+
+        &-reject {
+            @include invertedButton();
+            border: $danger 1px solid;
+            color: $danger;
+            width: 40%;
+        }
+    }
+
+    &__container {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    &__object {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: $darkGrey;
+        font-weight: 300;
+
+        &-image {
+            width: 144px;
+            height: 91px;
+            border-radius: 5px;
+        }
+
+        &-profile-image {
+            width: 40px;
+            height: 40px;
+            border-radius: 40px;
+            position: absolute;
+            margin-top: 115px;
+        }
+
+        &-text {
+            display: flex;
+            margin-bottom: 5px;
+            height: 20%;
+        }
+    }
+}

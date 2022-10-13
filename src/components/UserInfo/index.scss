@@ -1,0 +1,61 @@
+@import "../../assets/fonts/index.scss";
+@import "../../assets/colors/index.scss";
+
+.user-info {
+    width: 90%;
+    height: 50px;
+    background-color: $white;
+    border-radius: 10px;
+    padding: 6px 13px;
+    border: none;
+    box-shadow: $boxShadow;
+    display: flex;
+    align-items: center;
+
+    &-image {
+        width: 38px;
+        height: 38px;
+        border-radius: 38px;
+    }
+
+    &-texts {
+        display: flex;
+        flex-direction: column;
+        text-align: start;
+        font-size: 14px;
+        color: $dark;
+        font-weight: 500;
+        margin-left: 15px;
+        width: 40%;
+
+        &-redirect {
+            font-size: 14px;
+            color: $primary;
+        }
+    }
+
+    &-stats {
+        display: flex;
+        justify-content: flex-end;
+        width: 60%;
+
+        &-exchange {
+            color: $dark;
+            font-size: 16px;
+            margin: 0 0 0 17px;
+        }
+
+        &-objects {
+            color: $dark;
+            font-size: 16px;
+            margin: 0 17px;
+        }
+
+        &-likes {
+            color: $dark;
+            font-size: 16px;
+            margin: 0 17px 0 0;
+        }
+
+    }
+}

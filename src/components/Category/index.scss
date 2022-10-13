@@ -1,0 +1,28 @@
+@import "../../assets/fonts/index.scss";
+@import "../../assets/colors/index.scss";
+
+.card-box {
+  display: flex;
+  align-items: center;
+
+  &-button {
+    background-color: $white;
+    border: none;
+    border-radius: 41px;
+    box-shadow: $boxShadow;
+    min-width: 41px;
+    height: 41px;
+    margin: 0 -20px;
+    z-index: 2;
+  }
+
+  &-category-item {
+    margin-right: 15px;
+  }
+
+  .right {
+    margin: 0 -41px;
+  }
+}
+
+

@@ -1,0 +1,26 @@
+@import './assets/fonts/index.scss';
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #FAFAFA;
+  width: 100vw;
+  height: 100vh;
+  font-family: $Montserrat;
+  overflow-x: hidden;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+img {
+  object-fit: cover;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}

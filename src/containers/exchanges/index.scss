@@ -1,0 +1,60 @@
+@import "../../assets/fonts/index.scss";
+@import "../../assets/colors/index.scss";
+@import "../../assets/styles/index.scss";
+
+.exchanges {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__body {
+        margin: $marginTop 0 0 0;
+        width: 100%;
+        max-width: 500px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        &-items {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        &-select {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+
+            &-ed {
+                width: 40%;
+                height: 40px;
+                font-family: $Montserrat;
+                font-size: 16px;
+                background-color: transparent;
+                border: 0;
+                color: $darkPrimary;
+                border-bottom: 1px solid $darkPrimary;
+            }
+        }
+    }
+}
+
+
+.active {
+    background-color: $darkPrimary;
+    border-radius: 5px 0 0 5px;
+    font-family: $Montserrat;
+    font-size: 16px;
+    color: $white;
+
+    &-recieved {
+        background-color: $darkPrimary;
+        border-radius: 0 5px 5px 0;
+        font-family: $Montserrat;
+        font-size: 16px;
+        color: $white;
+    }
+}

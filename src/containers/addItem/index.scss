@@ -1,0 +1,199 @@
+@import "../../assets/fonts/index.scss";
+@import "../../assets/colors/index.scss";
+@import "../../assets/styles/index.scss";
+
+.add-item {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  
+  &__body {
+    width: 500px;
+    max-width: 500px;
+  }
+
+  &__button {
+    width: 100%;
+    display: flex;
+    margin-top: 40px;
+    justify-content: space-evenly;
+
+    &--cancel {
+      @include invertedButton;
+      width: 47%;
+      margin: 0;
+      font-size: 16px;
+    }
+
+    &--add {
+      @include button;
+      width: 47%;
+      margin: 0;
+      font-size: 16px;
+    }
+  }
+
+  &__categories {
+    display: flex;
+    flex-wrap: wrap;
+    width: 90%;
+
+    &-selected {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    &-input-container {
+      width: 90%;
+      border-bottom: 1px solid $darkGrey;
+    }
+
+    &-preview {
+      width: 90%;
+      border: 1px solid $grey;
+      font-size: 14px;
+
+      &:hover {
+        background-color: $darkGrey;
+        color: white;
+      }
+    }
+
+    &-input {
+      @include input;
+      border-bottom: 0;
+      width: 88%;
+    }
+  }
+
+  &__name {
+    font-size: 12px;
+    color: $darkGrey;
+    margin: 0 0 0 25px;
+    display: flex;
+    flex-direction: column;
+
+    &-input {
+      @include input;
+    }
+  }
+
+  &__description {
+    font-size: 12px;
+    color: $darkGrey;
+    margin: 25px 0 0 25px;
+    display: flex;
+    flex-direction: column;
+
+    &-input {
+      @include input;
+      height: 69px;
+    }
+  }
+
+  &__amount {
+    font-size: 12px;
+    color: $darkGrey;
+    margin: 25px 0 0 25px;
+
+    &-input {
+      @include input;
+      width: 49px;
+      height: 25px;
+    }
+  }
+
+  &__type {
+    font-size: 12px;
+    color: $darkGrey;
+    margin: 25px 0 0 25px;
+    display: flex;
+    flex-direction: column;
+
+    &-input {
+      @include input;
+      width: max-content;
+      height: 25px;
+      margin: 0 0 0 5px;
+    }
+  }
+
+  &__profile {
+    display: flex;
+    align-items: center;
+    margin: $marginTop 0 8px 25px;
+
+    &-image {
+      width: 40px;
+      height: 40px;
+    }
+
+    &-name {
+      font-size: 16px;
+      font-weight: 500;
+      margin: 0 0 0 10px;
+    }
+  }
+
+  &__image {
+    height: 10%;
+    max-width: 90%;
+
+    &-mother {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &-text {
+      font-size: 12px;
+      color: $darkGrey;
+      margin: 0 0 0 25px;
+    }
+
+    &-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 10%;
+      min-height: 183px;
+      max-width: 90%;
+      border: 1px solid $grey;
+      border-radius: 5px;
+      margin: 8px 0 0 25px;
+    }
+
+    &-upload {
+      @include button;
+      margin: 0;
+      font-size: 14px;
+      width: 157px;
+      height: 32px;
+    }
+
+    &-edit {
+      @include invertedButton;
+      margin: 0;
+      font-size: 14px;
+      width: max-content;
+      height: 32px;
+      border: 0;
+      text-decoration: underline;
+      background-color: transparent;
+      display: flex;
+      justify-content: flex-end;
+      margin: 0 6% 0 0;
+
+      &-container {
+        width: 100%;
+        height: 32px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+      }
+    }
+  }
+}
+
+input[type="file"] {
+  display: none;
+}
