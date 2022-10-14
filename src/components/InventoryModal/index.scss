@@ -34,6 +34,7 @@
       height: 98%;
       grid-gap: 15px;
       display: grid;
+      padding: 10px 0 0 0;
       // align-items: center;
       // justify-content: center;
       grid-template-columns: repeat(auto-fill, minmax(159px, 1fr));
@@ -52,6 +53,9 @@
 
     &-item {
       // margin: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 }
