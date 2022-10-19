@@ -2,7 +2,7 @@ import axios from "axios";
 import { getUserData, persistSession } from "./helpers";
 
 const apiAxios = axios.create({
-  baseURL: 'http://localhost:4000',
+  baseURL: "http://10.1.0.214:4000",
   headers: {
     'content-type': 'application/json',
     'Access-Control-Allow-Origin': '*',
@@ -61,6 +61,20 @@ const getUsersById = ({ id }) => {
     token,
   } = getUserData();
   return apiAxios.get(`/users/${id}`,
+    {
+      headers: {
+        token,
+      },
+    }).then(({ data }) => {
+      return data
+    });
+};
+
+const getMyProfile = () => {
+  const {
+    token,
+  } = getUserData();
+  return apiAxios.get(`/users/myprofile`,
     {
       headers: {
         token,
@@ -161,6 +175,7 @@ export {
   getCategories,
   getProductsbyId,
   getMyProducts,
+  getMyProfile,
   postProducts,
   postExchange,
   register,

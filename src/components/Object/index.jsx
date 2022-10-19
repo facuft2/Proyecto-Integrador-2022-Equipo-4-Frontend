@@ -21,7 +21,7 @@ const Object = ({ id, title, trueque, foto, available }) => {
           <span> {title} </span>
         </div>
         <div className="card-type">
-          <span>tipo: {trueque === "INTERCAMBIO" ? "intercambio" : "donacion"} </span>
+          <span>Tipo: {trueque === "INTERCAMBIO" ? "intercambio" : "donacion"} </span>
         </div>
       </div>
     </div>

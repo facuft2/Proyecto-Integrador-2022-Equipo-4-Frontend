@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { toast } from 'react-toastify';
+
 import HeaderGen from "../../components/HeaderGen";
 import { fakeUsers } from "../../constants";
 import { postProducts, getCategories } from "../../api";
@@ -28,9 +30,16 @@ const AddItem = () => {
 
   const createProduct = () => {
     uploadFile().then((data) => {
-      postProducts({
-        titulo, descripcion, tipo_trato, cantidad, foto: data, categorias: categorySelected.map(({ id }) => id)
-      }).then(
+      toast.promise(
+        postProducts({
+          titulo, descripcion, tipo_trato, cantidad, foto: data, categorias: categorySelected.map(({ id }) => id)
+        }),
+        {
+          pending: 'Añadiendo producto',
+          success: 'Producto creado',
+          error: 'El producto no se pudo crear'
+        })
+      .then(
         navigate('/', { replace: false })
       )
     })
@@ -53,12 +62,12 @@ const AddItem = () => {
     setCategorySelected(modifyarray)
   }
 
-  const config = {
-    bucketName: process.env.REACT_APP_BUCKET_NAME,
-    region: process.env.REACT_APP_REGION,
-    accessKeyId: process.env.REACT_APP_ACCESS,
-    secretAccessKey: process.env.REACT_APP_SECRET,
-  }
+  // const config = {
+  //   bucketName: process.env.REACT_APP_BUCKET_NAME,
+  //   region: process.env.REACT_APP_REGION,
+  //   accessKeyId: process.env.REACT_APP_ACCESS,
+  //   secretAccessKey: process.env.REACT_APP_SECRET,
+  // }
 
   const uploadFile = async () => {
     // const ReactS3Client = new S3(config);

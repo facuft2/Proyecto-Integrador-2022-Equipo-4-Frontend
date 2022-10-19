@@ -2,14 +2,15 @@
 @import "../../assets/colors/index.scss";
 
 .card {
-  // margin: 0 21px 0 0;
   display: flex;
   flex-direction: column;
   box-shadow: $boxShadow;
+  border-radius: 5px 5px 0 0;
   width: max-content;
 
   &-image {
     width: 154px;
+    border-radius: 5px 5px 0 0;
     height: 91px;
     background-color: $grey;
   }

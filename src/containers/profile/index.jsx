@@ -1,22 +1,23 @@
 import React, { useState } from "react";
 import HeaderGen from "../../components/HeaderGen";
 import Object from "../../components/Object";
-import { fakeUsers } from "../../constants";
 import { useNavigate } from "react-router-dom";
-import { getUsersById } from "../../api";
-import { useParams } from "react-router-dom";
+import { getUsersById, getMyProfile } from "../../api";
+import { useParams, useLocation } from "react-router-dom";
 
 import "./index.scss";
 import { useEffect } from "react";
 
 const Profile = () => {
+  const location = useLocation()
   const [profile, setProfile] = useState()
   const navigate = useNavigate();
-  const { id } = useParams()
-  const isMyProfile = id !== parseInt(localStorage.getItem('userId'), 10);
+  const params = useParams()
+  const isMyProfile = location.pathname !== "/myprofile";
 
   async function getProfile() {
-    setProfile(await getUsersById({ id }))
+    const recievedUser = !isMyProfile ? await getMyProfile() : await getUsersById({ id: params.id });
+    setProfile(recievedUser)
   }
 
   useEffect(() => {

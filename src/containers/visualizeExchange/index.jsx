@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { toast } from 'react-toastify';
+
 import HeaderGen from "../../components/HeaderGen";
 import { exchangeInfo } from "../../constants";
 import { getProductsbyId, getUsersById, postExchange } from "../../api";
@@ -14,24 +16,30 @@ const VisualizeExchange = () => {
   const [otherProduct, setOtherProduct] = useState();
   const [message, setMessage] = useState();
   const [user, setUser] = useState();
-  
+
   const fetch = async () => {
     const fetchMyProduct = await getProductsbyId({ id: localStorage.getItem('myItemToExchange') });
     const fetchOtherProduct = await getProductsbyId({ id: localStorage.getItem('itemToRecieve') });
-    const fetchUser = await getUsersById({id: fetchOtherProduct.product.userId})
+    const fetchUser = await getUsersById({ id: fetchOtherProduct.product.userId })
     setUser(fetchUser)
     setMyProduct(fetchMyProduct);
     setOtherProduct(fetchOtherProduct);
   }
 
   const createExchange = async () => {
-    postExchange({
-      idO: myProduct?.product?.id, idR: otherProduct?.product?.id, message
-    }).then(() => {
-      navigate('/', {replace: false})
-    })
+    toast.promise(
+      postExchange({
+        idO: myProduct?.product?.id, idR: otherProduct?.product?.id, message
+      }).then(
+        navigate('/', { replace: false })
+      ),
+      {
+        pending: 'Creando intercambio',
+        success: 'Intercambio creado',
+        error: 'No se pudo concretar el intercambio'
+      })
   }
-  
+
   useEffect(() => {
     fetch()
   }, [])
@@ -56,7 +64,7 @@ const VisualizeExchange = () => {
         </div>
         <div className="visualize-exchange__body-bottom">
           <button className="visualize-exchange__body-bottom-button--cancel">Cancelar</button>
-          <button style={{pointerEvents: !message && "none"}} className="visualize-exchange__body-bottom-button--accepted" onClick={createExchange}>Enviar</button>
+          <button style={{ pointerEvents: !message && "none" }} className="visualize-exchange__body-bottom-button--accepted" onClick={createExchange}>Enviar</button>
         </div>
       </div>
     </div>

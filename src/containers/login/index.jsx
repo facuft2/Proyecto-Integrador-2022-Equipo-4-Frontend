@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../api/index";
 import "./index.scss";
 import { Icon } from "@iconify/react";
-import { useEffect } from "react";
 
 const SignIn = () => {
   const [email, setEmail] = useState();
@@ -13,15 +12,16 @@ const SignIn = () => {
  
   const useLogin = () => {
       login({email, password}).then((response) => {
+        console.log(response)
         response.status === 200 && navigate('/', { replace: false })
       }).catch((error) => {
         setErrorMessage(error.response.data.error)
       })
   }
 
-  // console.error('NOOOOOOOOOOOOOO')
-  // console.warn({email, password})
-  // console.info('infopati')
+  useEffect(() => {
+    localStorage.clear()
+  }, []);
 
   return (
     <div className="sign-in">

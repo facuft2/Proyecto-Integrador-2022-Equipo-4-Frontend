@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import { ReactComponent as List } from "../../assets/list.svg";
 import { ReactComponent as Search } from "../../assets/search.svg";
-import { getUsersById } from "../../api";
+import { getMyProfile } from "../../api";
 
 import './index.scss';
 import { useEffect } from "react";
@@ -18,14 +18,13 @@ const Header = ({ showSideBar, setShowSideBar }) => {
   const id = localStorage.getItem('userId');
 
   const getProfile = async () => {
-    const {nombre, apellido, foto_perfil} = await getUsersById({id})
+    const {nombre, apellido, foto_perfil} = await getMyProfile()
     setUsername(`${nombre} ${apellido}`)
     setFoto(foto_perfil)
   }
 
   const logout = () => {
-    localStorage.removeItem('userId')
-    localStorage.removeItem('token')
+    localStorage.clear()
     navigate("/login", { replace: false })
   }
 

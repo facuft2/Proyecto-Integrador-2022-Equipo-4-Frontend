@@ -91,6 +91,10 @@ const Register = () => {
     }
   }, [name, apellido, email, password, verifyPassword]);
 
+  useEffect(() => {
+    localStorage.clear()
+  }, []);
+
   return (
     <div className="register">
       <span className="register__title-text">Crea una cuenta</span>

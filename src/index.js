@@ -1,7 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./index.scss";
+import { ToastContainer } from "react-toastify";
+
 import Home from "./containers/home/index";
 import SignIn from "./containers/login/index";
 import Register from "./containers/register";
@@ -15,9 +16,13 @@ import VisualizeExchange from "./containers/visualizeExchange";
 import Exchanges from "./containers/exchanges";
 import EditProfile from "./containers/editProfile";
 
+import "./index.scss";
+import "react-toastify/dist/ReactToastify.css";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
+    <ToastContainer />
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -26,6 +31,7 @@ root.render(
         <Route path="/product/:id" element={<Product />} />
         <Route path="/exchange/:id" element={<Exchange1 />} />
         <Route path="/profile/:id" element={<Profile />} />
+        <Route path="/myprofile" element={<Profile />} />
         <Route path="/inventory" element={<Inventory />} />
         <Route path="/addItem" element={<AddItem />} />
         <Route path="/exchangeRequest/:id" element={<ExchangeRequest />} />
