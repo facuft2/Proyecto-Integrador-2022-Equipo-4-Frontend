@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import Header from "../../components/Header/Header";
 import { AddItemButton } from "../../components/AddItemButton";
 import { Category } from "../../components/Category";
@@ -6,6 +8,7 @@ import { getMyProfile, getProducts } from "../../api";
 import "./index.scss";
 
 function Home() {
+  const navigate = useNavigate();
   const [showSideBar, setShowSideBar] = useState(false);
   const [products, setProducts] = useState()
   
@@ -13,15 +16,11 @@ function Home() {
     setProducts(await getProducts())
   }
 
-  // const fetchProfile = async () => {
-  //   const { foto_perfil, nombre, apellido } = await getMyProfile()
-  //   window.localStorage.setItem('fotoPerfil', foto_perfil)
-  //   window.localStorage.setItem('username', `${nombre} ${apellido}`)
-  // }
-
   useEffect(() => {
+    if ( !localStorage.getItem("userId")) {
+      navigate('/login', { replace: true })
+    }
     fetchProduct()
-    // fetchProfile()
   }, [])
 
   return (
