@@ -29,7 +29,7 @@ const Header = ({ showSideBar, setShowSideBar }) => {
   }
 
   useEffect(() => {
-    username && getProfile()
+    getProfile()
   },[])
 
   return (
@@ -51,7 +51,7 @@ const Header = ({ showSideBar, setShowSideBar }) => {
                   <Icon icon="ant-design:home-outlined" height="15" />
                   <span classname="options-text"> Inicio </span>
                 </div>
-                <div className="options" onClick={() => {navigate(`/profile/${id}`)}}>
+                <div className="options" onClick={() => {navigate(`/myprofile`)}}>
                   <Icon icon="ant-design:user-outlined" height="15" />
                   <span classname="options-text"> Perfil </span>
                 </div>

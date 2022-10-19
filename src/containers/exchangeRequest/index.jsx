@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { toast } from 'react-toastify';
 
-import { getExchangeById } from "../../api";
+import { getExchangeById, editExchange } from "../../api";
 import HeaderGen from "../../components/HeaderGen";
 import ExchangeWindow from "../../components/Exchange";
 import UserInfo from "../../components/UserInfo";
@@ -9,6 +10,7 @@ import UserInfo from "../../components/UserInfo";
 import "./index.scss";
 
 const ExchangeRequest = () => {
+  const navigate = useNavigate()
   const [color, setColor] = useState("");
   const [button, setButton] = useState("");
   const [exchangeState, setExchangeState] = useState();
@@ -22,6 +24,22 @@ const ExchangeRequest = () => {
         setExchange(data)
       })
   }, [])
+  
+  const message = `Hola! soy ${exchange?.tu_producto.usuario.nombre}, de la aplicacion reuso, me queria comunicar con vos para concretar el intercambio de mi ${exchange?.tu_producto.titulo} y tu ${exchange?.otro_producto.titulo}`
+
+  const editExchangeState = (state) => {
+    toast.promise(
+      editExchange({ id, state }), {
+      pending: 'Añadiendo producto',
+      success: 'Producto creado',
+      error: 'El producto no se pudo crear'
+    }).then ((data) =>
+      getExchangeById(id)
+      .then((data) => {
+        setExchange(data)
+      })
+    )
+  }
 
   // console.log('enviado')
 
@@ -30,17 +48,17 @@ const ExchangeRequest = () => {
       case "ESPERANDO":
         setColor('#F6C824');
         setExchangeState('Pendiente...');
-        setButton(<button className="exchange-request__body-bottom-button--canceled"> Cancelar intercambio</button>)
+        setButton(<button onClick={() => editExchangeState('RECHAZADO')} className="exchange-request__body-bottom-button--canceled"> Cancelar intercambio</button>)
         break;
       case "ACEPTADO":
         setColor('#4CAF50');
         setExchangeState('Exitoso!');
-        setButton(<button className="exchange-request__body-bottom-button--accepted"> Ir a whatsapp</button>)
+        setButton(<button onClick={() => window.open(`https://wa.me/+59895743270?text=${message.replace(' ', '%20')}`, '_blank')} className="exchange-request__body-bottom-button--accepted"> Ir a whatsapp</button>)
         break;
       default:
         setColor('#AF4C4C');
         setExchangeState('Cancelado')
-        setButton(<button className="exchange-request__body-bottom-button--rejected"> Volver al Inicio</button>)
+        setButton(<button onClick={() => navigate('/', { replace: false }) } className="exchange-request__body-bottom-button--rejected"> Volver al Inicio</button>)
     }
   }, [exchange]);
 
@@ -67,11 +85,11 @@ const ExchangeRequest = () => {
         </div>
         <div className="exchange-request__body-bottom">
           {
-            exchange?.isRecieved ? 
-            <div className="exchange-request__body-bottom">
-              <button className="exchange-request__body-bottom-button--reject">Rechazar</button>
-              <button className="exchange-request__body-bottom-button--accept">Aceptar</button>
-            </div> : button
+            exchange?.isRecieved && exchange?.estado === "ESPERANDO" ?
+              <div className="exchange-request__body-bottom">
+                <button onClick={() => editExchangeState('RECHAZADO')} className="exchange-request__body-bottom-button--reject">Rechazar</button>
+                <button onClick={() => editExchangeState('ACEPTADO')} className="exchange-request__body-bottom-button--accept">Aceptar</button>
+              </div> : button
           }
         </div>
       </div>
