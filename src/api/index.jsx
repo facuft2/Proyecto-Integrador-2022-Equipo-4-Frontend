@@ -2,7 +2,7 @@ import axios from "axios";
 import { getUserData, persistSession } from "./helpers";
 
 const apiAxios = axios.create({
-  baseURL: "http://10.1.0.214:4000",
+  baseURL: "http://10.0.1.214:4000",
   headers: {
     'content-type': 'application/json',
     'Access-Control-Allow-Origin': '*',
@@ -167,6 +167,15 @@ const getExchangeById = (id) => {
   }).then(({data}) => data)
 }
 
+const editExchange = ({id, state}) => {
+  const { token } = getUserData();
+  return apiAxios.put(`/exchange/${id}/${state}`,{}, {
+    headers: {
+      token,
+    }
+  }).then(({data}) => data)
+}
+
 
 export {
   login,
@@ -178,6 +187,7 @@ export {
   getMyProfile,
   postProducts,
   postExchange,
+  editExchange,
   register,
   getExchangeByParams,
   getExchangeById,

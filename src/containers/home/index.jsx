@@ -13,15 +13,15 @@ function Home() {
     setProducts(await getProducts())
   }
 
-  const fetchProfile = async () => {
-    const { foto_perfil, nombre, apellido } = await getMyProfile()
-    window.localStorage.setItem('fotoPerfil', foto_perfil)
-    window.localStorage.setItem('username', `${nombre} ${apellido}`)
-  }
+  // const fetchProfile = async () => {
+  //   const { foto_perfil, nombre, apellido } = await getMyProfile()
+  //   window.localStorage.setItem('fotoPerfil', foto_perfil)
+  //   window.localStorage.setItem('username', `${nombre} ${apellido}`)
+  // }
 
   useEffect(() => {
     fetchProduct()
-    fetchProfile()
+    // fetchProfile()
   }, [])
 
   return (
