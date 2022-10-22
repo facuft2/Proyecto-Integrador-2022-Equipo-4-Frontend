@@ -2,8 +2,8 @@
 @import '../../assets/colors/index.scss';
 
 .sign-in {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -13,7 +13,8 @@
         font-size: 32px;
         width: max-content;
         font-weight: 600;
-        margin-bottom: 84px;
+        // margin-bottom: 84px;
+        padding: 20px;
     }
     
 
@@ -46,6 +47,7 @@
         border: 0;
         outline: none;
         font-size: 16px;
+        background-color: $background;
     }
 
     &__message {
@@ -57,6 +59,7 @@
             color: #188266;
             font-weight: 600;
             cursor: pointer;
+            margin-left: 4px;
         }
     }
     

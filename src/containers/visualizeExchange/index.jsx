@@ -14,7 +14,7 @@ const VisualizeExchange = () => {
   const navigate = useNavigate();
   const [myProduct, setMyProduct] = useState();
   const [otherProduct, setOtherProduct] = useState();
-  const [message, setMessage] = useState();
+  const [message, setMessage] = useState('¡Hola!, estoy interesado en este producto');
   const [user, setUser] = useState();
 
   const fetch = async () => {
@@ -60,7 +60,7 @@ const VisualizeExchange = () => {
         </div>
         <div className="visualize-exchange__body-message-box">
           <span className="visualize-exchange__body-message-text">Enviale un mensaje!</span>
-          <textarea className="visualize-exchange__body-message" onChange={(e) => setMessage(e.target.value)} placeholder="¡Hola!, estoy interesado en este producto" />
+          <textarea className="visualize-exchange__body-message" value={message} onChange={(e) => setMessage(e.target.value)} placeholder="¡Hola!, estoy interesado en este producto" />
         </div>
         <div className="visualize-exchange__body-bottom">
           <button className="visualize-exchange__body-bottom-button--cancel">Cancelar</button>

@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { login } from "../../api/index";
-import "./index.scss";
 import { Icon } from "@iconify/react";
+
+import { login } from "../../api/index";
+import reuso from '../../assets/reuso.png'
+
+import "./index.scss";
 
 const SignIn = () => {
   const [email, setEmail] = useState();
@@ -11,12 +14,13 @@ const SignIn = () => {
   const navigate = useNavigate();
  
   const useLogin = () => {
+    if (email && password) {
       login({email, password}).then((response) => {
-        console.log(response)
         response.status === 200 && navigate('/', { replace: false })
       }).catch((error) => {
         setErrorMessage(error.response.data.error)
       })
+    }
   }
 
   useEffect(() => {
@@ -25,6 +29,7 @@ const SignIn = () => {
 
   return (
     <div className="sign-in">
+      <img src={reuso} alt="reuso" className="register-image" />
       <span className="sign-in__title-text">Ingresar</span>
       <div className="sign-in__input-container">
         <div className="sign-in__input-w-icon">

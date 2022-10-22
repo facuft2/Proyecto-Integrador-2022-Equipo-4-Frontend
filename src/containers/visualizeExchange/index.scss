@@ -13,9 +13,9 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    width: 100%;
+    width: 80%;
     height: 100%;
-    max-width: 500px;
+    max-width: 400px;
     margin-top: $marginTop;
 
     &-bottom {
@@ -71,8 +71,10 @@
 
     &-message {
       @include input;
+      width: 100%;
       overflow: auto;
       height: auto;
+      font-size: 16px;
 
       &-box {
         display: flex;
@@ -99,7 +101,7 @@
     &-description {
       display: flex;
       flex-direction: column;
-      margin-top: 10%;
+      margin-top: 15%;
       width: 90%;
       padding: 5px;
       height: max-content;

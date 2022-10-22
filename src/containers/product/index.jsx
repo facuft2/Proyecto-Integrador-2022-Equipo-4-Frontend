@@ -27,7 +27,7 @@ const Product = () => {
           <HeaderGen text={product.titulo} />
           <div className="product__body">
             <div className="product__body-data">
-              <div className="product__body-info">
+              <div className="product__body-info" onClick={() => navigate(`/profile/${product.userId}`, {replace: false})}>
                 <img
                   className="product__body-info-image"
                   src={product.usuario.foto_perfil}

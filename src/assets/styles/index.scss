@@ -47,4 +47,8 @@
   padding: 5px;
 }
 
-$marginTop: calc(50px + 2%);
+$marginTop: calc(50px + 4%);
+
+@media (max-height: 800px) {
+  $marginTop: calc(50px + 2%);
+}

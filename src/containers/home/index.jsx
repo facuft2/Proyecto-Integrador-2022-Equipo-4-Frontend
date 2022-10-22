@@ -17,7 +17,7 @@ function Home() {
   }
 
   useEffect(() => {
-    if ( !localStorage.getItem("userId")) {
+    if (!localStorage.getItem("token")) {
       navigate('/login', { replace: true })
     }
     fetchProduct()

@@ -3,7 +3,7 @@
 @import "../../assets/styles/index.scss";
 
 .exchange {
-  overflow-y: hidden;
+  // overflow-y: auto;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -39,8 +39,8 @@
     }
 
     &-box {
-      width: 70%;
-      max-width: 300px;
+      width: 100%;
+      // max-width: 300px;
       display: flex;
       border-radius: 5px;
       align-items: center;
@@ -52,9 +52,9 @@
       max-width: 300px;
       width: 70%;
       justify-content: flex-end;
-      margin-top: 5px;
+      // margin-top: 5px;
       cursor: pointer;
-
+      padding: 6px;
     }
 
     &-text {
@@ -68,9 +68,10 @@
     margin: $marginTop 0 0 0;
     height: max-content;
     display: flex;
-    max-width: 449px;
-    width: 70%;
-    max-width: 300px;
+    // max-width: 449px;
+    width: 80%;
+    height: 100%;
+    max-width: 400px;
     flex-direction: column;
 
     &-info {
@@ -100,10 +101,11 @@
 
       &-image {
         width: 100%;
-        max-width: 449px;
-        height: 182px;
+        // max-width: 449px;
+        // height: 182px;
         box-shadow: $boxShadow;
         border-radius: 5px;
+        aspect-ratio: 16/9;
       }
 
       &-description {
@@ -133,12 +135,14 @@
     @include button;
 
     &-box {
-      width: 100%;
       max-width: 300px;
       height: 100%;
+      width: 100%;
       display: flex;
       align-items: flex-end;
-      justify-content: space-evenly;
+      justify-content: center;
+      padding: 10px;
+      gap: 10px;
     }
 
     &-display {

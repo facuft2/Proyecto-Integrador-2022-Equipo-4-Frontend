@@ -2,9 +2,9 @@ import axios from "axios";
 import { getUserData, persistSession } from "./helpers";
 
 const apiAxios = axios.create({
-  baseURL: "http://10.1.0.214:4000",
+  baseURL: "http://192.168.1.16:4000",
   headers: {
-    'content-type': 'application/json',
+    // 'content-type': 'application/json',
     'Access-Control-Allow-Origin': '*',
   },
 });
@@ -84,6 +84,32 @@ const getMyProfile = () => {
     });
 };
 
+const editMyProfile = ({
+  nombre,
+  email,
+  apellido,
+  foto_perfil,
+  descripcion,
+}) => {
+  const {
+    token,
+  } = getUserData();
+  return apiAxios.put('/users/', {
+    nombre,
+    email,
+    apellido,
+    foto_perfil,
+    descripcion,
+  },
+    {
+      headers: {
+        token,
+      },
+    }).then(({ data }) => {
+      return data
+    });
+};
+
 const getMyProducts = () => {
   const {
     token,
@@ -97,6 +123,44 @@ const getMyProducts = () => {
       return productos
     });
 };
+
+const postProductsImages = ({
+  foto,
+}) => {
+  const {
+    token
+  } = getUserData();
+  return apiAxios.post('/product/imagen', {
+    File: foto,
+  }, {
+    headers: {
+      token,
+      'Content-Type': 'multipart/form-data',
+    }
+  }).then(({ data }) => {
+    return data
+  })
+}
+
+const postUserImages = ({
+  foto,
+}) => {
+  const {
+    token
+  } = getUserData();
+  // console.log(foto)
+  return apiAxios.post('/users/imagen', {
+    File: foto,
+  }, {
+    headers: {
+      token,
+      'Content-Type': 'multipart/form-data',
+      // 'x-amz-acl': 'public-read',
+    }
+  }).then(({ data }) => {
+    return data
+  })
+}
 
 const postProducts = ({
   titulo,
@@ -135,17 +199,17 @@ const getCategories = () => {
     }).then(({ data }) => data);
 };
 
-const postExchange = ({idO, idR, message}) => {
+const postExchange = ({ idO, idR, message }) => {
   const { token } = getUserData();
-  return apiAxios.post(`/exchange/${idR}/${idO}`, 
-  {
-    mensaje: message
-  },
-  {
-    headers: {
-      token,
+  return apiAxios.post(`/exchange/${idR}/${idO}`,
+    {
+      mensaje: message
     },
-  }).then(({data}) => data);
+    {
+      headers: {
+        token,
+      },
+    }).then(({ data }) => data);
 }
 
 const getExchangeByParams = (sended) => {
@@ -155,7 +219,7 @@ const getExchangeByParams = (sended) => {
     headers: {
       token,
     }
-  }).then(({data}) => data)
+  }).then(({ data }) => data)
 }
 
 const getExchangeById = (id) => {
@@ -164,16 +228,16 @@ const getExchangeById = (id) => {
     headers: {
       token,
     }
-  }).then(({data}) => data)
+  }).then(({ data }) => data)
 }
 
-const editExchange = ({id, state}) => {
+const editExchange = ({ id, state }) => {
   const { token } = getUserData();
-  return apiAxios.put(`/exchange/${id}/${state}`,{}, {
+  return apiAxios.put(`/exchange/${id}/${state}`, {}, {
     headers: {
       token,
     }
-  }).then(({data}) => data)
+  }).then(({ data }) => data)
 }
 
 
@@ -188,7 +252,10 @@ export {
   postProducts,
   postExchange,
   editExchange,
+  editMyProfile,
   register,
   getExchangeByParams,
   getExchangeById,
+  postProductsImages,
+  postUserImages,
 };

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./index.scss";
+import reuso from '../../assets/reuso.png'
 import { Icon } from "@iconify/react";
 import { register } from "../../api";
 import { useEffect } from "react";
@@ -97,6 +98,7 @@ const Register = () => {
 
   return (
     <div className="register">
+      <img src={reuso} alt="reuso" className="register-image" />
       <span className="register__title-text">Crea una cuenta</span>
       <div className="register__input-container">
         <Input
