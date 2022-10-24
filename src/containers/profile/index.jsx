@@ -36,6 +36,11 @@ const Profile = () => {
           />
           <span className="profile__body-info-name">{`${profile?.nombre} ${profile?.apellido}`}</span>
         </div>
+        <span className="profile__body-data-description">
+          {
+            profile?.descripcion
+          }
+        </span>
         <div className="profile__body-data">
           <div className="profile__body-data-item">
             <span className="profile__body-data-item-text">intercambios</span>

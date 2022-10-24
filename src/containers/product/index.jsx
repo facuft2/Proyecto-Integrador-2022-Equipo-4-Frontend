@@ -27,7 +27,7 @@ const Product = () => {
           <HeaderGen text={product.titulo} />
           <div className="product__body">
             <div className="product__body-data">
-              <div className="product__body-info" onClick={() => navigate(`/profile/${product.userId}`, {replace: false})}>
+              <div className="product__body-info" onClick={() => navigate(`/profile/${product.userId}`, { replace: false })}>
                 <img
                   className="product__body-info-image"
                   src={product.usuario.foto_perfil}
@@ -65,15 +65,9 @@ const Product = () => {
                 Cantidad: {product.cantidad}
               </span>
             </div>
-          {
-            userId !== product.userId ?
-              <div className="product-button-box">
-                <button className="product-button" onClick={() => { navigate(`/exchange/${params.id}`) }}>¡Estoy interesado!</button>
-              </div> :
-              <div className="product-button-box">
-                <button className="product-button" onClick={() => { navigate(`/exchange/${params.id}`) }}>Editar mi producto</button>
-              </div>
-          }
+            <div className="product-button-box">
+              <button className="product-button" onClick={() => { navigate(`/exchange/${params.id}`) }}>¡Estoy interesado!</button>
+            </div>
           </div>
         </>
       )}
