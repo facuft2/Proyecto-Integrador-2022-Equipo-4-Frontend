@@ -60,10 +60,10 @@ const VisualizeExchange = () => {
         </div>
         <div className="visualize-exchange__body-message-box">
           <span className="visualize-exchange__body-message-text">Enviale un mensaje!</span>
-          <textarea className="visualize-exchange__body-message" value={message} onChange={(e) => setMessage(e.target.value)} placeholder="¡Hola!, estoy interesado en este producto" />
+          <textarea className="visualize-exchange__body-message" value={message} onFocus={() => setMessage('')} onChange={(e) => setMessage(e.target.value)} placeholder="¡Hola!, estoy interesado en este producto" />
         </div>
         <div className="visualize-exchange__body-bottom">
-          <button className="visualize-exchange__body-bottom-button--cancel">Cancelar</button>
+          <button className="visualize-exchange__body-bottom-button--cancel" onClick={() => navigate('/', { replace: false })}>Cancelar</button>
           <button style={{ pointerEvents: !message && "none" }} className="visualize-exchange__body-bottom-button--accepted" onClick={createExchange}>Enviar</button>
         </div>
       </div>

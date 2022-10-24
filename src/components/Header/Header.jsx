@@ -47,10 +47,6 @@ const Header = ({ showSideBar, setShowSideBar }) => {
                 <span className="side-bar__top-text">{username}</span>
               </div>
               <div className="side-bar__options">
-                <div className="options">
-                  <Icon icon="ant-design:home-outlined" height="15" />
-                  <span classname="options-text"> Inicio </span>
-                </div>
                 <div className="options" onClick={() => {navigate(`/myprofile`)}}>
                   <Icon icon="ant-design:user-outlined" height="15" />
                   <span classname="options-text"> Perfil </span>

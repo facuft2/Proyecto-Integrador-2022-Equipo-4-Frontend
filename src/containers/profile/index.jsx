@@ -41,10 +41,10 @@ const Profile = () => {
             <span className="profile__body-data-item-text">intercambios</span>
             <span>{profile?.cant_intercambio}</span>
           </div>
-          <div className="profile__body-data-item--small">
+          {/* <div className="profile__body-data-item--small">
             <span className="profile__body-data-item-text">likes</span>
             <span>3</span>
-          </div>
+          </div> */}
           <div className="profile__body-data-item--expand">
             <span className="profile__body-data-item-text">
               objetos disponibles

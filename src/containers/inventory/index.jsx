@@ -28,7 +28,7 @@ const Inventory = () => {
               foto={card?.foto}
               id={card?.id}
               title={card?.titulo}
-              trueque={card?.trueque === "INTERCAMBIO" ? true : false}
+              trueque={card?.tipo_trato}
             />
           </div>
         ))}

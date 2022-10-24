@@ -13,7 +13,7 @@ const UserInfo = ({profile}) => {
                 <span className="user-info-texts-name">{`${profile?.nombre} ${profile?.apellido}`}</span>
                 <span className="user-info-texts-redirect" onClick={() => { navigate(`/profile/${profile?.id}`, { replace: false }) }}>Ver perfil</span>
             </div>
-            <div className="user-info-stats">
+            {/* <div className="user-info-stats">
                 <div className="user-info-stats-exchange">
                     <span className="user-info-stats-exchange-number">{profile?.cant_intercambio}</span>
                 </div>
@@ -23,7 +23,7 @@ const UserInfo = ({profile}) => {
                 <div className="user-info-stats-likes">
                     <span className="user-info-stats-likes-number">3</span>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 };

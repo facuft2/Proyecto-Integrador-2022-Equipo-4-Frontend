@@ -30,9 +30,9 @@ const ExchangeRequest = () => {
   const editExchangeState = (state) => {
     toast.promise(
       editExchange({ id, state }), {
-      pending: 'Añadiendo producto',
-      success: 'Producto creado',
-      error: 'El producto no se pudo crear'
+      pending: 'Editando estado',
+      success: 'Estado editado',
+      error: 'El intercambio no se puedo editar'
     }).then ((data) =>
       getExchangeById(id)
       .then((data) => {
@@ -40,8 +40,6 @@ const ExchangeRequest = () => {
       })
     )
   }
-
-  // console.log('enviado')
 
   useEffect(() => {
     switch (exchange?.estado) {
@@ -53,7 +51,7 @@ const ExchangeRequest = () => {
       case "ACEPTADO":
         setColor('#4CAF50');
         setExchangeState('Exitoso!');
-        setButton(<button onClick={() => window.open(`https://wa.me/+59895743270?text=${message.replace(' ', '%20')}`, '_blank')} className="exchange-request__body-bottom-button--accepted"> Ir a whatsapp</button>)
+        setButton(<button onClick={() => window.open(`https://wa.me/+598${exchange?.otro_producto.usuario.telefono}?text=${message.replace(' ', '%20')}`, '_blank')} className="exchange-request__body-bottom-button--accepted"> Ir a whatsapp</button>)
         break;
       default:
         setColor('#AF4C4C');

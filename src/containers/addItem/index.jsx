@@ -19,6 +19,7 @@ const AddItem = () => {
   const [descripcion, setDescripcion] = useState();
   const [cantidad, setCantidad] = useState();
   const [tipo_trato, setTipoTrato] = useState("INTERCAMBIO");
+  const [isSubmited, setIsSubmited] = useState(false)
   const [categorySelected, setCategorySelected] = useState([]);
   const [categories, setCategories] = useState();
   const [inputContent, setInputContent] = useState('');
@@ -101,7 +102,8 @@ const AddItem = () => {
         <form onSubmit={(e) => {
           e.preventDefault()
           createProduct()
-        }} >
+          setIsSubmited(true)
+        }}>
           <div className="add-item__profile">
             <img
               className="add-item__profile-image"
@@ -169,13 +171,13 @@ const AddItem = () => {
             <span className="add-item__amount-text">Cantidad</span>
             <input type="number" onChange={(e) => setCantidad(parseInt(e.target.value, 10))} className="add-item__amount-input" />
           </div>
-          <div className="add-item__type">
+          {/* <div className="add-item__type">
             <span className="add-item__type-text">Tipo de trueque</span>
             <select className="add-item__type-input" onChange={(e) => setTipoTrato(e.target.value)}>
               <option value="INTERCAMBIO">intercambio</option>
               <option value="DONACION">donacion</option>
             </select>
-          </div>
+          </div> */}
           <div className="add-item__type" >
             <span className="add-item__type-text">Categorias</span>
             <div className="add-item__categories" >

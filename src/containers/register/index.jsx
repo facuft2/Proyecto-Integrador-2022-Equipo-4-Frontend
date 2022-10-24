@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import "./index.scss";
 import reuso from '../../assets/reuso.png'
 import { Icon } from "@iconify/react";
-import { register } from "../../api";
 import { useEffect } from "react";
 import { Input } from "../../components/Input/Input";
+import RegisterComplete from "../../components/register_complete";
 
 const Register = () => {
   const [name, setName] = useState();
@@ -19,6 +19,7 @@ const Register = () => {
   const [verifyPasswordError, setVerifyPasswordError] = useState();
   const [emailError, setEmailError] = useState();
   const [apellidoError, setApellidoError] = useState();
+  const [isComplete, setIsComplete] = useState(false);
 
   const navigate = useNavigate();
 
@@ -59,15 +60,7 @@ const Register = () => {
       (password === verifyPassword) &&
       (email.includes("@") || email.includes("."))) {
       try {
-        const response = await register({
-          nombre: name,
-          apellido,
-          email,
-          contrasenia: password,
-        });
-        if (response.status === 201) {
-          navigate("/", { replace: false });
-        }
+        setIsComplete(true)
       } catch (error) {
         setResMessage(error.response.data.error)
       }
@@ -99,61 +92,66 @@ const Register = () => {
   return (
     <div className="register">
       <img src={reuso} alt="reuso" className="register-image" />
-      <span className="register__title-text">Crea una cuenta</span>
-      <div className="register__input-container">
-        <Input
-          label="Nombre"
-          name="name"
-          type="text"
-          onChange={(value) => setName(value)}
-          error={nameError}
-        >
-          <Icon icon="mdi:account" className="input__icon" />
-        </Input>
-        <Input
-          label="Apellido"
-          name="apellido"
-          type="text"
-          onChange={(value) => setApellido(value)}
-          error={apellidoError}
-        >
-          <Icon icon="mdi:account" className="input__icon" />
-        </Input>
-        <Input
-          label="Email"
-          name="email"
-          type="email"
-          onChange={(value) => setEmail(value)}
-          error={emailError}
-        >
-          <Icon icon="mdi:email" className="input__icon" />
-        </Input>
-        <Input
-          label="Contraseña"
-          name="password"
-          type="password"
-          onChange={(value) => setPassword(value)}
-          error={passwordError}
-        >
-          <Icon icon="mdi:lock" className="input__icon" />
-        </Input>
-        <Input
-          label="Verificar contraseña"
-          name="verifyPassword"
-          type="password"
-          onChange={(value) => setVerifyPassword(value)}
-          error={verifyPasswordError}
-        >
-          <Icon icon="mdi:lock" className="input__icon" />
-        </Input>
-      </div>
-      <span className="register-error">{resMessage}</span>
-      <button
-        className="register__button"
-        onClick={handleSubmit}
-      >
-        Registrarse
-      </button>
+      {!isComplete ? (
+        <>
+          <span className="register__title-text">Crea una cuenta</span>
+          <div className="register__input-container">
+            <Input
+              label="Nombre"
+              name="name"
+              type="text"
+              onChange={(value) => setName(value)}
+              error={nameError}
+            >
+              <Icon icon="mdi:account" className="input__icon" />
+            </Input>
+            <Input
+              label="Apellido"
+              name="apellido"
+              type="text"
+              onChange={(value) => setApellido(value)}
+              error={apellidoError}
+            >
+              <Icon icon="mdi:account" className="input__icon" />
+            </Input>
+            <Input
+              label="Email"
+              name="email"
+              type="email"
+              onChange={(value) => setEmail(value)}
+              error={emailError}
+            >
+              <Icon icon="mdi:email" className="input__icon" />
+            </Input>
+            <Input
+              label="Contraseña"
+              name="password"
+              type="password"
+              onChange={(value) => setPassword(value)}
+              error={passwordError}
+            >
+              <Icon icon="mdi:lock" className="input__icon" />
+            </Input>
+            <Input
+              label="Verificar contraseña"
+              name="verifyPassword"
+              type="password"
+              onChange={(value) => setVerifyPassword(value)}
+              error={verifyPasswordError}
+            >
+              <Icon icon="mdi:lock" className="input__icon" />
+            </Input>
+          </div>
+          <span className="register-error">{resMessage}</span>
+          <button
+            className="register__button"
+            onClick={handleSubmit}
+          >
+            Registrarse
+          </button>
+        </>
+      ) : <RegisterComplete name={name} apellido={apellido} email={email} password={password} setComplete={setIsComplete} errorSetter={setEmailError} />
+      }
       <span className="register__message">
         ¿Tienes una cuenta?
         <span
@@ -163,7 +161,7 @@ const Register = () => {
           Iniciar sesion
         </span>
       </span>
-    </div>
+    </div >
   );
 };
 

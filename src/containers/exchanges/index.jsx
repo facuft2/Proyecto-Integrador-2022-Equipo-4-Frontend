@@ -29,8 +29,8 @@ const Exchanges = () => {
         </div>
         <div className="exchanges__body-items">
           {
-            exchanges?.map(({ producto_enviado, producto_recibido, id }) => (
-              <ExchangeInfo myProduct={producto_enviado} otherProduct={producto_recibido} recieved={!sended} exchangeId={id} />
+            exchanges?.map(({ producto_enviado, producto_recibido, id, estado}) => (
+              <ExchangeInfo myProduct={producto_enviado} otherProduct={producto_recibido} exchangeState={estado} recieved={!sended} exchangeId={id} />
             ))
           }
         </div>

@@ -58,7 +58,7 @@ const SignIn = () => {
         className="sign-in__button"
         onClick={useLogin}
       >
-        iniciar sesion
+        Iniciar Sesión
       </button>
       <span className="sign-in__message">
         ¿No tienes una cuenta?

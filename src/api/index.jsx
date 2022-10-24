@@ -13,16 +13,41 @@ const register = (({
   nombre,
   apellido,
   email,
-  contrasenia
+  contrasenia,
+  numero,
+  foto_perfil,
+  descripcion
 }) => apiAxios.post('/users', {
   nombre,
   apellido,
   email,
-  contrasenia
+  contrasenia,
+  numero,
+  foto_perfil,
+  descripcion
 }).then((response) => {
   persistSession(response)
   return response
 }))
+
+const verifyNumber = (({
+  numero,
+}) => apiAxios.post('/users/verifynumber', {
+  numero,
+}).then((response) => {
+  return response
+}))
+
+const verifyCode = (({
+  numero,
+  code,
+}) => apiAxios.post('/users/verifycode', {
+  numero,
+  code
+}).then((response) => {
+  return response
+}))
+
 
 const login = ({
   email,
@@ -254,6 +279,8 @@ export {
   editExchange,
   editMyProfile,
   register,
+  verifyNumber,
+  verifyCode,
   getExchangeByParams,
   getExchangeById,
   postProductsImages,
