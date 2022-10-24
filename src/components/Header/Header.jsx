@@ -93,10 +93,10 @@ const Header = ({ showSideBar, setShowSideBar }) => {
         >
           <List />
         </span>
-        <div className="header-search-bar">
+        {/* <div className="header-search-bar">
           <Search className="search-icon" />
           <input className="search-bar-input" placeholder="Buscar un producto"></input>
-        </div>
+        </div> */}
       </div>
     </>
   );

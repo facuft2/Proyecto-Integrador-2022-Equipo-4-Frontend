@@ -24,12 +24,12 @@ const AddItem = () => {
   const [categories, setCategories] = useState();
   const [inputContent, setInputContent] = useState('');
   const [displayCategories, setDisplayCategories] = useState(false);
-  const [nombre , setNombre] = useState();
+  const [nombre, setNombre] = useState();
   const [apellido, setApellido] = useState();
   const [foto, setFoto] = useState();
 
   const getProfile = async () => {
-    const {nombre, apellido, foto_perfil} = await getMyProfile()
+    const { nombre, apellido, foto_perfil } = await getMyProfile()
     setNombre(nombre)
     setApellido(apellido)
     setFoto(foto_perfil)
@@ -101,7 +101,9 @@ const AddItem = () => {
       <div className="add-item__body">
         <form onSubmit={(e) => {
           e.preventDefault()
-          createProduct()
+          if (!isSubmited) {
+            createProduct()
+          }
           setIsSubmited(true)
         }}>
           <div className="add-item__profile">

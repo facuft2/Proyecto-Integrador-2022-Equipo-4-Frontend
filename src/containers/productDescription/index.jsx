@@ -81,22 +81,22 @@ const Exchange1 = () => {
           )}
         </div>
         {product && <span className="exchange__my-item-edit" onClick={() => setModal(true)}>Elegir otro producto</span>}
+        <div className="exchange-button-box">
+          {product ? (
+            <>
+              <button className="exchange-button-display--cancel" onClick={() => navigate('/', { replace: false })}>
+                Cancelar
+              </button>
+              <button className="exchange-button-display--confirm" onClick={submitExchange}>
+                Confirmar
+              </button>
+            </>
+          ) : (
+            <button onClick={() => navigate('/', { replace: false })} className="exchange-button--cancel">Cancelar</button>
+          )}
+        </div>
       </div>
       {modal && <InventoryModal setProduct={setProduct} setModal={setModal} />}
-      <div className="exchange-button-box">
-        {product ? (
-          <>
-            <button className="exchange-button-display--cancel" onClick={() => navigate('/', { replace: false })}>
-              Cancelar
-            </button>
-            <button className="exchange-button-display--confirm" onClick={submitExchange}>
-              Confirmar
-            </button>
-          </>
-        ) : (
-          <button onClick={() => navigate('/', { replace: false })} className="exchange-button--cancel">Cancelar</button>
-        )}
-      </div>
     </div>
   );
 };
