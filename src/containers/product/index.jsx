@@ -10,7 +10,6 @@ const Product = () => {
   const navigate = useNavigate();
   const params = useParams()
   const [product, setProduct] = useState();
-  const userId = parseInt(localStorage.getItem('userId'), 10)
 
   useEffect(() => {
     const fetch = async () => {

@@ -2,7 +2,7 @@ import axios from "axios";
 import { getUserData, persistSession } from "./helpers";
 
 const apiAxios = axios.create({
-  baseURL: "http://192.168.1.15:4000",
+  baseURL: "http://10.1.0.214:4000",
   headers: {
     // 'content-type': 'application/json',
     'Access-Control-Allow-Origin': '*',
