@@ -11,6 +11,7 @@ body {
   height: 100vh;
   font-family: $Montserrat;
   overflow-x: hidden;
+  overflow-y: auto;
 }
 
 code {
@@ -24,6 +25,12 @@ img {
 
 #root {
   width: 100%;
-  // height: 100vh;
-  height: calc(var(--vh, 1vh) * 100);
+  height: 100vh;
+
+}
+
+@media (max-width: 768px) {
+  #root {
+    height: calc(var(--vh, 1vh) * 100);
+  }
 }

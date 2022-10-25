@@ -15,7 +15,7 @@ const Category = ({ data }) => {
     <div className="card-box">
       {numeroFlecha ? <button className="card-box-button" onClick={() => setNumeroFlecha((value) => value - contentAvailable)}> &lt; </button> : null}
       {data.producto && data.producto.slice(numeroFlecha, numeroFlecha + contentAvailable).map((producto, index) => (
-        <div className="card-box-category-item"> <Object key={index} id={producto?.id} title={producto?.titulo} foto={producto?.foto} trueque={producto?.tipo_trato} /> </div>
+        <div key={index} className="card-box-category-item"> <Object id={producto?.id} title={producto?.titulo} foto={producto?.foto} descripcion={producto?.descripcion} /> </div>
       ))
       }
       {isAvailable ? <button className="card-box-button right" onClick={() => setNumeroFlecha((value) => value + contentAvailable)}> &gt; </button> : null}

@@ -65,7 +65,7 @@ const Exchange1 = () => {
               <span className="exchange__my-item-text">
                 Seleccione un objeto del inventario.
               </span>
-              <button onClick={() => setModal(true)} className="exchange__my-item-button">Seleccionar...</button>
+              <button onClick={() => setModal(true)} className="exchange__my-item-button">Seleccionar</button>
             </>
           ) : (
             <>

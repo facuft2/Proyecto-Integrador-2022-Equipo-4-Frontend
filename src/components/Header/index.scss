@@ -1,3 +1,7 @@
+@import "../../assets/fonts/index.scss";
+@import "../../assets/colors/index.scss";
+@import "../../assets/styles/index.scss";
+
 .side-bar {
   min-width: 208px;
   height: 100vh;
@@ -88,16 +92,48 @@
     margin: 0 0 0 5px;
   }
 
-  &-search-bar {
-    width: 74%;
-    height: 30px;
-    border-radius: 35px;
-    background-color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    border: white 1px solid;
-    outline: 0px;
-    margin: 10px;
+  &-search {
+    width: 70vw;
+    margin: 10px 0 10px 1%;
+
+    &-bar {
+      // width: 74%;
+      height: 30px;
+      // border-radius: 35px;
+      background-color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      border: white 1px solid;
+      outline: 0px;
+      margin: 10px;
+    }
+
+    &__products {
+      position: absolute;
+      width: calc(70vw - 20px );
+      display: flex;
+      flex-direction: column;
+      margin: -10px 0 0 10px;
+      border-radius: 5px;
+      box-shadow: $boxShadow;
+
+      &-list {
+        height: 35px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        padding: 5px;
+        background-color: white;
+        border: 1px solid $grey;
+
+        & > img {
+          height: 40px;
+          width: 40px;
+          object-fit: cover;
+          padding: 0 10px 0 0;
+        }
+      }
+    }
   }
 }

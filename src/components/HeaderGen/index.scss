@@ -11,6 +11,11 @@
   position: fixed;
   top: 0;
 
+  &-img {
+    width: 10%;
+    padding-left: 10px;
+  }
+
   &-arrow {
     margin: 0 0 0 16px;
     z-index: 5;
@@ -20,9 +25,13 @@
     font-size: 20px;
     font-weight: bold;
     color: $lightSecondary;
-    display: flex;
-    width: 100%;
+    width: 50%;
+    left: 25%;
     justify-content: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
     position: absolute;
+    text-align: center;
   }
 }

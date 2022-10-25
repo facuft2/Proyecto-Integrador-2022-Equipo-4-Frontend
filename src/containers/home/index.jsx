@@ -11,7 +11,7 @@ function Home() {
   const navigate = useNavigate();
   const [showSideBar, setShowSideBar] = useState(false);
   const [products, setProducts] = useState()
-  
+
   const fetchProduct = async () => {
     setProducts(await getProducts())
   }
@@ -27,17 +27,19 @@ function Home() {
     <div className="home">
       <div className="home__body">
         <Header showSideBar={showSideBar} setShowSideBar={setShowSideBar} />
-        {products?.Productos?.map((data) => (
-          <>
-            <div className="category-box">
-              <div className="category-box__head">
-                <span className="category-title">{data.categoria}</span>
-                {/* <span className="category-see-all">Ver todo</span> */}
+        <div>
+          {products?.Productos?.map((data) => (
+            <>
+              <div className="category-box">
+                <div className="category-box__head">
+                  <span className="category-title">{data.categoria}</span>
+                  {/* <span className="category-see-all">Ver todo</span> */}
+                </div>
+                <Category data={data} />
               </div>
-              <Category data={data} />
-            </div>
-          </>
-        ))}
+            </>
+          ))}
+        </div>
         <AddItemButton />
       </div>
     </div>

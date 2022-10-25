@@ -45,12 +45,12 @@ const ExchangeRequest = () => {
     switch (exchange?.estado) {
       case "ESPERANDO":
         setColor('#F6C824');
-        setExchangeState('Pendiente...');
+        setExchangeState('Pendiente');
         setButton(<button onClick={() => editExchangeState('RECHAZADO')} className="exchange-request__body-bottom-button--canceled"> Cancelar intercambio</button>)
         break;
       case "ACEPTADO":
         setColor('#4CAF50');
-        setExchangeState('Exitoso!');
+        setExchangeState('Aceptado');
         setButton(<button onClick={() => window.open(`https://wa.me/+598${exchange?.otro_producto.usuario.telefono}?text=${message.replace(' ', '%20')}`, '_blank')} className="exchange-request__body-bottom-button--accepted"> Ir a whatsapp</button>)
         break;
       default:
@@ -85,8 +85,8 @@ const ExchangeRequest = () => {
           {
             exchange?.isRecieved && exchange?.estado === "ESPERANDO" ?
               <div className="exchange-request__body-bottom">
-                <button onClick={() => editExchangeState('RECHAZADO')} className="exchange-request__body-bottom-button--reject">Rechazar</button>
                 <button onClick={() => editExchangeState('ACEPTADO')} className="exchange-request__body-bottom-button--accept">Aceptar</button>
+                <button onClick={() => editExchangeState('RECHAZADO')} className="exchange-request__body-bottom-button--reject">Rechazar</button>
               </div> : button
           }
         </div>

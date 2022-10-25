@@ -29,6 +29,7 @@ const Inventory = () => {
               id={card?.id}
               title={card?.titulo}
               trueque={card?.tipo_trato}
+              descripcion={card?.descripcion}
             />
           </div>
         ))}

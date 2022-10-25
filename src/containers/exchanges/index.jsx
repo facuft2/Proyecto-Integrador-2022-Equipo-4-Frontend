@@ -27,13 +27,18 @@ const Exchanges = () => {
           <button onClick={() => setSended(true)} className={`exchanges__body-select-ed ${sended && 'active'}`}>Enviados</button>
           <button onClick={() => setSended(false)} className={`exchanges__body-select-ed ${!sended && 'active-recieved'}`}>Recibidos</button>
         </div>
-        <div className="exchanges__body-items">
-          {
-            exchanges?.map(({ producto_enviado, producto_recibido, id, estado}) => (
-              <ExchangeInfo myProduct={producto_enviado} otherProduct={producto_recibido} exchangeState={estado} recieved={!sended} exchangeId={id} />
-            ))
-          }
-        </div>
+        {exchanges && exchanges.length > 0 ? (
+          <div className="exchanges__body-items">
+            {
+              exchanges?.map(({ producto_enviado, producto_recibido, id, estado }) => (
+                <ExchangeInfo myProduct={producto_enviado} otherProduct={producto_recibido} exchangeState={estado} recieved={!sended} exchangeId={id} />
+              ))
+            }
+          </div>
+        ) : (
+          <div className="exchanges__body-empty"> No tienes intercambios {sended ? 'enviados' : 'recibidos'} </div>
+        )
+        }
       </div>
     </div>
   )

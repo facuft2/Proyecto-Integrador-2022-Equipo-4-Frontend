@@ -36,6 +36,7 @@ export const InventoryModal = ({ setProduct, setModal }) => {
                   id={card?.id}
                   title={card?.titulo}
                   trueque={card?.trueque === "INTERCAMBIO" ? true : false}
+                  descripcion={card?.descripcion}
                   available={false}
                 />
               </div>

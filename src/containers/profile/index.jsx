@@ -67,13 +67,13 @@ const Profile = () => {
             Objetos para intercambiar
           </span>
           <div className="profile__card-box">
-            {profile?.producto?.map(({ titulo, tipo_trato, id, foto }) => (
+            {profile?.producto?.map(({ titulo, tipo_trato, id, foto, descripcion }) => (
               <div className="profile__card-box-item">
                 <Object
                   foto={foto}
                   id={id}
                   title={titulo}
-                  trueque={tipo_trato === "INTERCAMBIO" ? true : false}
+                  descripcion={descripcion}
                 />
               </div>
             ))}

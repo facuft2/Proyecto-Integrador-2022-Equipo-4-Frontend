@@ -3,18 +3,26 @@
 @import "../../assets/styles/index.scss";
 
 .exchanges {
+    margin: $marginTop 0 0 0;
+    height: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
 
     &__body {
-        margin: $marginTop 0 0 0;
         width: 100%;
+        height: 100%;
         max-width: 400px;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: center;
+        // align-items: center;
+        // justify-content: center;
+
+        &-empty {
+            width: 100%;
+            text-align: center;
+            padding: 50% 0;
+            height: 100%;
+        }
 
         &-items {
             width: 100%;

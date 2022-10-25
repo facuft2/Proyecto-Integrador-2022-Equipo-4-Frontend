@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import { useNavigate } from "react-router-dom";
 import './index.scss';
 
-const Object = ({ id, title, trueque, foto, available }) => {
+const Object = ({ id, title, trueque, foto, available, descripcion }) => {
   const navigate = useNavigate();
   
   return (
@@ -20,8 +20,8 @@ const Object = ({ id, title, trueque, foto, available }) => {
         <div className="card-title">
           {title}
         </div>
-        <div className="card-type">
-          <span>Tipo: {trueque === "INTERCAMBIO" ? "intercambio" : "donacion"} </span>
+        <div className="card-desc">
+          {descripcion}
         </div>
       </div>
     </div>

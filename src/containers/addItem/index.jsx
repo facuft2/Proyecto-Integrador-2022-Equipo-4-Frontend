@@ -38,7 +38,14 @@ const AddItem = () => {
   const createProduct = () => {
     const formData = new FormData();
     formData.append('File', image);
-    postProductsImages({ foto: formData.get('File') }).then((data) => {
+    toast.promise(
+      postProductsImages({ foto: formData.get('File') }),
+      {
+        pending: 'Subiendo imagen',
+        error: 'Error al subir imagen',
+      }
+    )
+    .then((data) => {
       toast.promise(postProducts({
         titulo,
         descripcion,
@@ -47,7 +54,7 @@ const AddItem = () => {
         foto: data,
         categorias: categorySelected.map((category) => category.id),
       }), {
-        loading: 'Creando producto',
+        pending: 'Creando producto',
         success: 'Producto creado correctamente',
         error: 'Error al crear producto',
       }).then(() => navigate('/'));

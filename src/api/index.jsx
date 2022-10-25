@@ -2,7 +2,7 @@ import axios from "axios";
 import { getUserData, persistSession } from "./helpers";
 
 const apiAxios = axios.create({
-  baseURL: "http://10.1.8.150:4000",
+  baseURL: "http://192.168.1.15:4000",
   headers: {
     // 'content-type': 'application/json',
     'Access-Control-Allow-Origin': '*',
@@ -173,14 +173,12 @@ const postUserImages = ({
   const {
     token
   } = getUserData();
-  // console.log(foto)
   return apiAxios.post('/users/imagen', {
     File: foto,
   }, {
     headers: {
       token,
       'Content-Type': 'multipart/form-data',
-      // 'x-amz-acl': 'public-read',
     }
   }).then(({ data }) => {
     return data
@@ -265,6 +263,15 @@ const editExchange = ({ id, state }) => {
   }).then(({ data }) => data)
 }
 
+const searchProducts = ({ search }) => {
+  const { token } = getUserData();
+  return apiAxios.get(`/product/filter/${search}`, {
+    headers: {
+      token,
+    }
+  }).then(({ data }) => data)
+}
+
 
 export {
   login,
@@ -285,4 +292,5 @@ export {
   getExchangeById,
   postProductsImages,
   postUserImages,
+  searchProducts
 };
